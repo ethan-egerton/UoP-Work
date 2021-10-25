@@ -1,4 +1,4 @@
-// Triangle Loop
+ // Triangle Loop
 const string = "#";
 
 for (i = 0; i != 7; i++) {
@@ -14,26 +14,28 @@ for (i = 0; i != 100; i++) {
     if ((i % 5) == 0) {divBy5 = true};
 
     if (divBy3 == true && divBy5 == true) {
-        console.log("FizzBuzz ")
+        console.log(`${i} FizzBuzz`)
     }
     if (divBy3 == true) {
-        console.log("Fizz ")
+        console.log(`${i} Fizz`)
     }
     if (divBy5 == true) {
-        console.log("Buzz ")
+        console.log(`${i} Buzz`)
     }
+    divBy3, divBy5 = false;
 }
 
 // Chessboard
 const prompt = require('prompt-sync')({sigint: true})
 let chessString = ""
+let sizeX, sizeY;
 
 sizeX = prompt('How long do you want the chessboard: ')
 sizeY = prompt('How tall do you want the chessboard: ')
 
 for (let i = 0; i < sizeY; i++) {
-    for (let index = 0; index < sizeX; index++) {
-        if ((index % 2) == 0) {
+    for (let i = 0; i < sizeX; i++) {
+        if ((i % 2) == 0) {
             chessString += "#";
         } else {
             chessString += " ";
