@@ -21,10 +21,10 @@ function promptForNumber(msg, limit) {
 
     do {
         numberEntered = Number(prompt(msg + `(up to ${limit}) `));
-        if (numberEntered > limit) {
-            console.log('Please enter a number up to ', limit);
+        if (numberEntered > limit || !Number.isInteger(numberEntered) || numberEntered < 0) {
+            console.log(`Please enter a number up to ${limit} and make sure the number is a number`);
         }
-    } while (numberEntered > limit);
+    } while (numberEntered > limit || !Number.isInteger(numberEntered) || numberEntered < 0);
 
     return numberEntered;
 }
