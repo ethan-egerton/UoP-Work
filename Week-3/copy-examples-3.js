@@ -180,9 +180,10 @@ for (let i = 1; i <= 6; i++) {
 
 // Word Tower
 
+/*
 const prompt = require('prompt-sync')({ sigint: true });
 
-function discribeWordTower(word) {
+function describeWordTower(word) {
     const retval = [];
 
     for (let i = 0; i < word.length; i++) {
@@ -205,3 +206,68 @@ function createLayerString(towerWidth, layerDescription) {
     const characters = layerDescription.ch.repeat(layerDescription.w);
     return sidePadding + characters + sidePadding
 }
+
+const WIDTH = 500;
+
+const word = prompt('enter a word: ');
+const towerDescription = describeWordTower(word);
+for (const layer of towerDescription) {
+    console.log(createLayerString(WIDTH, layer));
+}
+*/
+
+// Word Tower with Colour
+/*
+const prompt = require('prompt-sync')({ sigint: true });
+const colors = require('colors/safe');
+
+function nthColor(n, string) {
+    const colorFunctions = [
+        colors.red,
+        colors.green,
+        colors.yellow,
+        colors.blue,
+        colors.magenta,
+        colors.cyan,
+    ];
+
+    const selectedColorFunction = colorFunctions[n % colorFunctions.length];
+
+    return selectedColorFunction(string);
+}
+
+function describeWordTower(word) {
+    const retval = [];
+
+    for (let i = 0; i < word.length; i++) {
+        const character = word[i];
+        const layerSize = (i + 1) *2;
+        const layerDescription = {
+            w: layerSize,
+            ch: character,
+        };
+
+        retval.push(layerDescription);
+    }
+
+    return retval;
+}
+
+function createLayerString(towerWidth, layerDescription) {
+    const spaceCount = towerWidth - layerDescription.w;
+    const sidePadding = ' '.repeat(spaceCount / 2);
+    const characters = layerDescription.ch.repeat(layerDescription.w);
+    return sidePadding + characters + sidePadding
+}
+
+const WIDTH = 500;
+
+const word = prompt('enter a word: ');
+const towerDescription = describeWordTower(word);
+for (let i = 0; i < towerDescription.length; i += 1) {
+    const layer = towerDescription[i];
+    const layerString = createLayerString(WIDTH, layer );
+    console.log(nthColor(i, layerString));
+}
+*/
++++
