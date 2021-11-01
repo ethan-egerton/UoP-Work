@@ -270,4 +270,111 @@ for (let i = 0; i < towerDescription.length; i += 1) {
     console.log(nthColor(i, layerString));
 }
 */
-+++
+
+// Tower of Hanoi
+
+const prompt = require('prompt-sync')({ sigint: true });
+const colors = require('colors/safe');
+
+const HEIGHT = 3;
+const WIDTH = HEIGHT * 2 + 2;
+const EMPTY_LAYER = padLayerString(WIDTH, '');
+
+function nthColor(n, string) {
+    const colorFunctions = [
+        colors.red,
+        colors.green,
+        colors.yellow,
+        colors.blue,
+        colors.magenta,
+        colors.cyan,
+    ];
+
+    const selectedColorFunction = colorFunctions[n % colorFunctions.length];
+
+    return selectedColorFunction(string);
+}
+
+
+function describeHanoiTower() {
+    const tower = [];
+
+    for (let i = 0; i < HEIGHT; i++) {
+        const layerSize = (i + 1) * 2;
+        const layer = padLayerString(WIDTH, '#'.repeat(layerSize));
+
+        tower.push(nthColor(i, layer));
+    }
+
+    return tower;
+}
+
+function padLayerString(towerWidth, layer) {
+    const spaceCount = towerWidth - layer.length;
+    const sidePadding = ' '.repeat(spaceCount / 2);
+    return sidePadding + layer + sidePadding;
+}
+
+function printTowerSideBySide(spaces) {
+    for (let i = 0; i < HEIGHT; i++) {
+        let layerString = '';
+
+        for (const tower of spaces) {
+            const layerIndex = (tower.layers.length - HEIGHT) + i;
+
+            layerString += layerIndex < 0 ? EMPTY_LAYER : tower.layers[layerIndex];
+        }
+        
+        console.log(layerString);
+    }
+
+    let nameLine = '';
+    for (const tower of spaces) {
+        nameLine += padLayerString(WIDTH, tower.name);
+    }
+
+    console.log(nameLine)
+}
+
+function playTowerOfHanoi() {
+    const spaces = [
+        {
+            name: 'space #1',
+            layers: describeHanoiTower(),
+        },
+        {
+            name: 'space #2',
+            layers: [],
+        },
+        {
+            name: 'space #3',
+            layers: [],
+        },
+    ];
+
+    printTowerSideBySide(spaces);
+
+    moveBlocks(spaces[0], spaces[2], spaces[1], HEIGHT);
+    console.log('done');
+
+    function moveOneBlock(from, to) {
+       console.log(`\nwill move block from ${from.name} ${to.name}`);
+       
+       prompt('press enter...')
+
+       const block = from.layers.shift();
+       to.layers.unshift(block);
+
+       printTowerSideBySide(spaces)
+    }
+
+    function moveBlocks(from, to, through, howMany) {
+        if (howMany > 0) {
+            moveBlocks(from, through, to, howMany - 1);
+            moveOneBlock(from, to);
+            moveBlocks(through, to, from, howMany - 1);
+        }
+    }
+}
+
+playTowerOfHanoi();
