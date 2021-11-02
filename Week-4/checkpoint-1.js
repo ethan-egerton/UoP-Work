@@ -16,26 +16,17 @@ function letterInWordRegex(letter, word) {
     return regex.test(word);
 }
 
-console.log(letterInWordForLoop("i", "interesting"));
-console.log(letterInWordForLoop("i", "apples"));
-
-console.log(letterInWordRegex("i", "interesting"));
-console.log(letterInWordRegex("i", "apples"));
+console.table([["For Loop", letterInWordForLoop("i", "interesting"), letterInWordForLoop("i", "apples") ], ["Regex", letterInWordRegex("i", "interesting"), letterInWordRegex("i", "apples")]] )
 
 
 // Random Word Generator
-// NOTE: planned to use a seperate JSON file but wasnt smart enough
-// to learn how to import .JSON locally
-const words = [
-    'hello',
-    'i',
-    'am',
-    'here',
-];
-
-function randomWordGen(wordsArray) {
-    const wordIndex = Math.floor(Math.random() * wordsArray.length);
-    console.log(wordsArray[wordIndex]);
+function randomWordGen(wordArray) {
+    const wordIndex = Math.floor(Math.random() * wordArray.length);
+    console.log(wordArray[wordIndex]);
 }
 
-randomWordGen(words);
+const json = require("./words.json");
+console.log("\n\nRandom word: ");
+randomWordGen(json["words"])
+
+
