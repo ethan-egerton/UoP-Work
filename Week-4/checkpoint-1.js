@@ -21,12 +21,14 @@ console.table([["For Loop", letterInWordForLoop("i", "interesting"), letterInWor
 
 // Random Word Generator
 function randomWordGen(wordArray) {
-    const wordIndex = Math.floor(Math.random() * wordArray.length);
-    console.log(wordArray[wordIndex]);
+    try {
+        const wordIndex = Math.floor(Math.random() * wordArray.length);
+        return wordArray[wordIndex];
+    } catch {
+        console.log("could not locate array")
+    }
 }
 
 const json = require("./words.json");
-console.log("\n\nRandom word: ");
-randomWordGen(json["words"])
-
+console.log(`\nRandom Word: ${randomWordGen(json["word"])}`);
 
