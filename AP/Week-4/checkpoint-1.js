@@ -16,7 +16,17 @@ function letterInWordRegex(letter, word) {
     return regex.test(word);
 }
 
-console.table([["For Loop", letterInWordForLoop("i", "interesting"), letterInWordForLoop("i", "apples") ], ["Regex", letterInWordRegex("i", "interesting"), letterInWordRegex("i", "apples")]] )
+// Printing the table of results
+function Results(type, interesting, apples) {
+    this.Type = type;
+    this.Interesting = interesting;
+    this.Apples = apples;
+}
+
+let forLoop = new Results("For Loop", letterInWordForLoop("i", "interesting"), letterInWordForLoop("i", "apples"));
+let regexResults = new Results("Regex", letterInWordRegex("i", "interesting"), letterInWordRegex("i", "apples"));
+
+console.table([forLoop, regexResults]);
 
 
 // Random Word Generator
@@ -25,10 +35,9 @@ function randomWordGen(wordArray) {
         const wordIndex = Math.floor(Math.random() * wordArray.length);
         return wordArray[wordIndex];
     } catch {
-        console.log("could not locate array")
+        console.log("could not locate array");
     }
 }
 
 const json = require("./words.json");
-console.log(`\nRandom Word: ${randomWordGen(json["word"])}`);
-
+console.log(`\nRandom Word: ${randomWordGen(json["words"])}\n`);
