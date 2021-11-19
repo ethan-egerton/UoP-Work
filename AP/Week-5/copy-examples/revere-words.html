@@ -1,0 +1,32 @@
+<title>Reverse Words</title>
+
+<h1>Reverse Words</h1>
+
+<textarea placeholder="enter some text" rows="20" cols="80"></textarea>
+<button>reverse the words</button>
+
+<script>
+    function reverse(string) {
+        return Array.from(string).reverse().join('');
+    }
+
+    function reverseWords() {
+        const textArea = document.querySelector('textarea');
+        const contents = textArea.value;
+
+        const lines = contents.split('\n');
+        const outputLines = [];
+
+        for (const line of lines) {
+            const words = line.split(' ');
+
+            const reverseWords = [];
+            for (const word of words) {reverseWords.push(reverse(word));}
+
+            outputLines.push(reverseWords.join(' '));
+        }
+        textArea.value = outputLines.join('\n');
+    }
+
+    document.querySelector('button').addEventListener('click', reverseWords);
+</script>
