@@ -50,5 +50,17 @@ function reportUpdater(event) {
 }
 
 function idValidationAttacher() {
-    
+    document.getElementById('newid').addEventListener('input', idValidator);
+}
+
+function idValidator() {
+    try {
+        document.getElementById('newid').classList.remove(document.getElementById('newid').className)
+    }
+    catch {}
+    if (document.getElementById('newid').value.indexOf(' ') >= 0) {
+        document.getElementById('newid').classList.add('invalid')
+    } else {
+        document.getElementById('newid').classList.add(document.getElementById('newid').value)
+    }
 }
