@@ -46,5 +46,9 @@ function reportAttacher() {
 }
 
 function reportUpdater(event) {
-    window.report.textContent = event.t
+    window.report.textContent = 'x: ' + event.screenX + ' y: ' + event.screenY;
+}
+
+function idValidationAttacher() {
+    
 }
