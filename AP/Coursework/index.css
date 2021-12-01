@@ -1,0 +1,48 @@
+body {
+    padding: 1vh;
+}
+
+button {
+    width: 10vh;
+    height: 5vh;
+    background-color: whitesmoke;
+}
+
+.title {
+    text-align: center;
+    padding-top: 2vh;
+}
+
+.subtitle {
+    text-align: left;
+}
+
+.topics {
+    box-shadow: inset 0 0 0 2px #828282;
+}
+
+.topics btn {
+    flex: auto;
+    text-align: left;
+}
+
+
+
+.item-b {
+    grid-area: main;
+}
+
+.item-c {
+    grid-area: sidebar;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 25vw 25vw;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "header header"
+    "sidebar main"
+;
+}

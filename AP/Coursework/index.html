@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Hangman Game</title>
+</head>
+<h1 class="title">Hangman</h1>
+<body class="container">
+    <div class="item-b">
+        <h3 class="subtitle">Menu</h3>
+        <button>Start Game</button>   
+        <button>Restart Game</button>
+        <button id="topic-btn">Topics</button>
+        <div class="topics" id="topics-section" style="visibility: hidden;">
+            <Button>x</Button>
+            <Button>x</Button>
+            <Button>x</Button>
+            <Button>x</Button>
+            <Button>x</Button>
+            <Button>x</Button>
+        </div>
+    </div>
+    <div class="item-c">
+        <canvas id="myCanvas" width="300vw" height="300vh" style="border:1px solid #000000;"></canvas>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
