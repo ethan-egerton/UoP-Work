@@ -7,5 +7,9 @@ function topicToggle() {
     }
 }
 
+function selectTopic(id) {
+    
+}
+
 document.getElementById('topic-btn').addEventListener('click', topicToggle);
 
