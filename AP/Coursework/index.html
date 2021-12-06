@@ -3,40 +3,57 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="topic-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="index.css">
-    <title>Hangman Game</title>
 </head>
 
 <body>
-    <main>
-        <div class="title">
-            <h1 class="title">Hangman</h1>
-        </div>
-        <div class="container">
-            <div class="item-a">
-                <h3 class="subtitle" style="margin-bottom: 20px;">Menu</h3>
-                <button>Start Game</button>
-                <button>Restart Game</button>
-                <button id="topic-btn">Topics</button>
-                <div class="topics animated fadeInLeft" data-mdb-toggle="animation" id="topics-section"
-                    style="visibility: hidden;">
-                    <section>
-                        <button class="sub-btn">x</button>
-                        <button class="sub-btn">x</button>
-                        <button class="sub-btn">x</button>
-                        <button class="sub-btn">x</button>
-                        <button class="sub-btn">x</button>
-                        <button class="sub-btn">x</button>
-                    </section>
+    <main class="app">
+        <section class="title">
+            Hangman
+        </section>
+        <section class="sidebar">
+            <section class="sidebar-top">
+                <div class="controls">
+                    <button class="btn btn-start vis-flip" id="btn-start">Start Game</button>
+                    <button class="btn btn-quit vis-flip display-none" id="btn-end">End Game</button>
                 </div>
-            </div>
-            <div class="item-b">
-                <canvas id="myCanvas" width="300vw" height="530vh" style="border:1px solid #000000;"></canvas>
-            </div>
-        </div>
+                <div class="app-screen">
+                    <canvas id="canvas" height="300vh"></canvas>
+                </div>
+            </section>
+            <section class="word-display">
+                <div class="topic-display vis-flip" id="topic-display">
+                    <p style="margin: 20ptopic;">Topic:</p>
+                    <p id="topic-selected">Select a topic</p>
+                </div>
+                <div class="letters vis-flip display-none" id="letter-display">
+                    <span class="letter">B</span>
+                    <span class="letter">R</span>
+                    <span class="letter">E</span>
+                    <span class="letter">A</span>
+                    <span class="letter">⠀</span>
+                </div>
+            </section>
+            <section id="topics" class="sidebar-bot">
+                <button class="btn btn-topic" id="food">Food</button>
+                <button class="btn btn-topic" id="music">Music</button>
+                <button class="btn btn-topic">topic</button>
+                <button class="btn btn-topic">topic</button>
+                <button class="btn btn-topic">topic</button>
+                <button class="btn btn-topic">topic</button>
+                <button class="btn btn-topic">topic</button>
+            </section>
+        </section>
     </main>
 </body>
+<script src="words.json"></script>
 <script src="index.js"></script>
+<script src="canvas.js"></script>
 </html>
