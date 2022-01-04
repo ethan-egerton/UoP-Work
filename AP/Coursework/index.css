@@ -51,7 +51,7 @@ main.app {
 }
 
 button.btn {
-  font-family: "Press Start 2P", cursive !important;
+  font-family: "Press Start 2P", 'Segoe UI', Tahoma,  Verdana, sans-serif !important;
   padding: 7px 20px;
   margin: 0px 10px 10px 0px;
   cursor: crosshair !important;
@@ -133,7 +133,7 @@ section.title {
   justify-content: center;
   align-items: center;
   font-size: 27pt;
-  font-family: "Press Start 2P", cursive !important;
+  font-family: "Press Start 2P", 'Segoe UI', Tahoma,  Verdana, sans-serif !important;
 }
 
 .sidebar {
@@ -176,7 +176,7 @@ div.topic-display {
 
   position: relative;
 
-  font-family: "Press Start 2P", cursive !important;
+  font-family: "Press Start 2P", 'Segoe UI', Tahoma,  Verdana, sans-serif !important;
   font-size: 17pt;
 }
 
@@ -188,7 +188,7 @@ div.letters {
   align-items: center;
 
   position: relative;
-  font-family: "Press Start 2P", cursive !important;
+  font-family: "Press Start 2P", 'Segoe UI', Tahoma,  Verdana, sans-serif !important;
   font-size: 17pt;
 }
 
