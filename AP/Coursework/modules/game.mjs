@@ -1,41 +1,12 @@
+import * as ui from './ui.mjs'; 
+
 // Decloration
-let wordArray = []
 let splitWord = []
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 let playerScore = 0
-let uniqueLetters = 0
 let correctLetters = 0
 let wordLength = 0
-
-
-// Display Toggles
-function startToggle() {
-    clearWordDisplay()
-    document.querySelector('#topic-display').classList.add('display-none');
-    document.querySelector('#btn-start').classList.add('display-none');
-    document.querySelector('#btn-multi').classList.add('display-none');
-    document.querySelector('#btn-comp').classList.add('display-none');
-    document.querySelector('#btn-settings').classList.add('display-none');
-    document.querySelector('#btn-history').classList.add('display-none');
-    document.querySelector('#topics').classList.add('display-none');
-    document.querySelector('#letter-display').classList.remove('display-none');
-    document.querySelector('#btn-end').classList.remove('display-none');
-    document.querySelector('#keyboard').classList.remove('display-none');
-}
-
-function endToggle() {
-    document.querySelector('#topic-display').classList.remove('display-none');
-    document.querySelector('#btn-start').classList.remove('display-none');
-    document.querySelector('#btn-multi').classList.remove('display-none');
-    document.querySelector('#btn-comp').classList.remove('display-none');
-    document.querySelector('#btn-settings').classList.remove('display-none');
-    document.querySelector('#btn-history').classList.remove('display-none');
-    document.querySelector('#topics').classList.remove('display-none');
-    document.querySelector('#letter-display').classList.add('display-none');
-    document.querySelector('#btn-end').classList.add('display-none');
-    document.querySelector('#keyboard').classList.add('display-none')
-}
 
 // Letter Validation
 
@@ -50,6 +21,7 @@ function checkLetters(event) {
             event.currentTarget.classList.add('btn-correct');
             document.querySelector("#letter-" + i).textContent = splitWord[i];
             foundLetter = true;
+            event.currentTarget.removeEventListener('click', checkLetters);
         }
     }
     if (foundLetter == false) {
@@ -58,7 +30,7 @@ function checkLetters(event) {
         playerScore += 1;
     }
     canvasBuild(playerScore);
-    if (correctLetters === uniqueLetters) {GameWon()};
+    if (correctLetters === wordLength) {gameWon()};
 }
 
 
@@ -74,16 +46,15 @@ function keyboardEventReset() {
 
 function randomWordGen() {
     try {
-        const wordIndex = Math.floor(Math.random() * wordArray.length);
-        console.log(wordArray[wordIndex]);
-        return wordArray[wordIndex]
+        const wordIndex = Math.floor(Math.random() * ui.wordArray.length);
+        return ui.wordArray[wordIndex]
     } catch {
         console.log("could not locate array");
     }
 }
 
 export function startGame() {
-    startToggle()
+    ui.startToggle()
     keyboardEventReset();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const word = randomWordGen();
@@ -101,39 +72,21 @@ export function startGame() {
         eleLetter.id = "letter-" + i
         document.querySelector('#letter-display').append(eleLetter);
         }
-
-    // Count unique letters
-    // https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
-    uniqueLetters = splitWord.filter((v, i, splitWord) => splitWord.indexOf(v) === i).length;
     wordLength = splitWord.length;
+    console.log(wordLength);
 }
 
-function removeKeyColours() {
-    const reds = document.querySelectorAll('.btn-wrong');
-    const greens = document.querySelectorAll('.btn-correct');
-    Array.from(reds).forEach(element => {
-        element.classList.remove('btn-wrong');});
-    Array.from(greens).forEach(element => {
-        element.classList.remove('btn-correct');});
-}
-
-export function gameWon() {
-    endToggle();
-    removeKeyColours();
+ function gameWon() {
+    ui.endToggle();
+    ui.removeKeyColours();
 }
 
 export function gameLost() {
-    endToggle();
-    removeKeyColours();
+    ui.endToggle();
+    ui.removeKeyColours();
 }
 
 // Word Display 
-function clearWordDisplay() {
-    const element = document.querySelector("#letter-display")
-    while (element.firstChild) {
-    element.removeChild(element.firstChild);
-    }
-}
 
 function canvasBuild(score) {
     switch(score){
@@ -151,54 +104,47 @@ function canvasBuild(score) {
             ctx.fillRect(25, 15, 132, 10);
             break;
         case 4:
-            // Hang beam
-            ctx.fillRect(25, 15, 132, 10);
-            break;
-        case 5:
-            // Support beam
-            break;
-        case 6:
             // Rope
             ctx.fillRect(152, 15, 5, 40);
             break;
-        case 7:
+        case 5:
             // Head
             ctx.beginPath();
             ctx.arc(154, 85, 30, 0, 2 * Math.PI);
             ctx.stroke();
             break;
-        case 8:
+        case 6:
             // Body
             ctx.fillRect(153, 115, 2, 90);
             break;
-        case 9:
+        case 7:
             // R Arm
             ctx.beginPath();
             ctx.moveTo(153,120);
             ctx.lineTo(170,160);
             ctx.stroke();
             break;
-        case 10:
+        case 8:
             // L Arm
             ctx.beginPath();
             ctx.moveTo(155,120);
             ctx.lineTo(136,160);
             ctx.stroke();
             break;
-        case 11:
+        case 9:
             // R Leg
             ctx.beginPath();
             ctx.moveTo(153,203);
             ctx.lineTo(170,243);
             ctx.stroke();
             break;
-        case 12:
+        case 10:
             // L Leg
             ctx.beginPath();
             ctx.moveTo(155,203);
             ctx.lineTo(136,243);
             ctx.stroke();
-            GameLost();
+            gameLost();
             break;
     }
 }

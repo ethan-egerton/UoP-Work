@@ -50,11 +50,17 @@ main.app {
   cursor: crosshair !important;
 }
 
+/*--- Buttons ---*/
 button.btn {
   font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
   padding: 7px 20px;
   margin: 0px 10px 10px 0px;
   cursor: crosshair !important;
+}
+
+button.btn-selected {
+  background: rgb(0, 124, 207) !important;
+  color: #fff !important;
 }
 
 button.btn-start {
@@ -63,6 +69,7 @@ button.btn-start {
   transition: all 158ms ease-out;
   width: 100%;
 }
+
 button.btn-quit {
   background: rgb(163, 56, 56) !important;
   color: #fff !important;
@@ -122,6 +129,7 @@ section.sup-title {
   width: auto !important;
 }
 
+/*--- Sections ---*/
 section.title {
   padding: 10px 0px;
   text-transform: uppercase;
@@ -136,6 +144,7 @@ section.title {
   font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
 }
 
+/*--- Divs ---*/
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -154,28 +163,30 @@ div.app-screen {
   margin-bottom: 15px;
 }
 
-section.sidebar-top {
+.sidebar-top {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 15px;
-  border-bottom: 3px solid #111;
 }
 
-section.word-display {
-  padding: 15px 0px 15px 0px;
-  border-bottom: 3px solid #111;
+.topics {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 3%;
 }
+
 
 div.topic-display {
   display: block;
   text-align: center;
   justify-content: space-evenly;
   align-items: center;
-
+  padding: 10px 0px 10px 0px;
+  border-bottom: 3px solid #111;
   position: relative;
-
   font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
   font-size: 17pt;
 }
@@ -199,6 +210,10 @@ div.sidebar-bot {
   align-items: center;
   flex-wrap: wrap;
   margin-top: 30px;
+  margin-bottom: 15px;
+  padding-top: 2%;
+  border: 3px solid #111;
+  border-radius: 2px;
 }
 
 section.topics {

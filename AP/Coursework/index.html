@@ -20,42 +20,32 @@
             <section class="sidebar-top">
                 
                 <div class="controls">
-                    <button class="btn btn-start" id="btn-start">Start Game</button>
-                    <button class="btn" id="btn-multi">Multiplayer</button>
+                    <button class="btn btn-start display-none" id="btn-start">Start Game</button>
+                    <button class="btn" id="btn-single">Singleplayer</button>
                     <button class="btn" id="btn-comp">Vs Comp</button>
+                    <button class="btn" id="btn-multi">Multiplayer</button>
                     <button class="btn" id="btn-settings">Settings</button>
                     <button class="btn" id="btn-history">History</button>
-
                     <button class="btn btn-quit display-none" id="btn-end">End Game</button>
                 </div>
                 <div class="app-screen">
                     <canvas id="canvas" height="300vh"></canvas>
                 </div>
             </section>
-            <section class="word-display ">
-                <div class="topic-display" id="topic-display">
+            <section class="word-display">
+                <div class="topic-display display-none" id="topic-display">
                     <p style="margin: 20ptopic;">Topic:</p>
                     <p id="topic-selected">Select a topic</p>
                 </div>
                 <div class="letters display-none" id="letter-display">
-                    <span class="letter"></span>
-                    <span class="letter"></span>
-                    <span class="letter"></span>
-                    <span class="letter"></span>
-                    <span class="letter"></span>
                 </div>
             </section>
-            <section>
-                <div id="topics" class="sidebar-bot">
+            <section class="sidebar-bot">
+                <div id="topics" class="word-display display-none">
                     <button class="btn btn-topic" id="food">Food</button>
                     <button class="btn btn-topic" id="music">Music</button>
-                    <button class="btn btn-topic">topic</button>
-                    <button class="btn btn-topic">topic</button>
-                    <button class="btn btn-topic">topic</button>
-                    <button class="btn btn-topic">topic</button>
-                    <button class="btn btn-topic">topic</button>
                 </div>
-                <div id="keyboard" class="sidebar-bot display-none">
+                <div id="keyboard" class="display-none">
                     <button class="btn btn-keyboard">a</button>
                     <button class="btn btn-keyboard">b</button>
                     <button class="btn btn-keyboard">c</button>

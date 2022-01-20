@@ -1,18 +1,12 @@
 import * as game from "./modules/game.mjs";
 import * as ui from "./modules/ui.mjs";
+import * as tools from "./modules/ui.mjs";
 
-// Declaration
-let wordsObj = {};
-
-// Data fetching
-fetch("./words.json")
-    .then(function(resp){
-        return resp.json();
-    })
-    .then(function(data){ 
-        wordsObj = data
-    })
-
+document.querySelector('#btn-single').addEventListener('click', ui.selectMode)
+document.querySelector('#btn-comp').addEventListener('click', ui.selectMode)
+document.querySelector('#btn-multi').addEventListener('click', ui.selectMode)
+document.querySelector('#btn-settings').addEventListener('click', ui.selectMode)
+document.querySelector('#btn-history').addEventListener('click', ui.selectMode)
 document.querySelector('#btn-end').addEventListener('click', game.gameLost);
 document.querySelector('#food').addEventListener('click', ui.selectTopic);
 document.querySelector('#music').addEventListener('click', ui.selectTopic);
