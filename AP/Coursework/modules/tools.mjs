@@ -31,7 +31,7 @@ export function fetchWordData() {
             "onion",
             "chocolate"
         ],
-    
+
         "music": [
             "rock",
             "hip hop",
@@ -55,6 +55,10 @@ export function fetchWordData() {
             "experimental",
             "grunge",
             "ska"
-        ] 
+        ]
     };
+}
+
+export function qwertyString() {
+    return "qwertyuiop/asdfghjkl/zxcvbnm"
 }

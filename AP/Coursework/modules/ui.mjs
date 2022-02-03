@@ -7,8 +7,13 @@ let selectedMode = '';
 function clearWordDisplay() {
     const element = document.querySelector("#letter-display")
     while (element.firstChild) {
-    element.removeChild(element.firstChild);
+        element.removeChild(element.firstChild);
     }
+}
+
+export function displayGame() {
+    console.log("loaded")
+    document.querySelector('.app').classList.remove('display-none');
 }
 
 // Display Toggles
@@ -51,7 +56,7 @@ function clearControls() {
     document.querySelector('#topics').classList.add('display-none');
     document.querySelector('#btn-start').classList.add('display-none');
     try {
-        document.querySelector('.btn-selected').classList.remove('btn-selected');   
+        document.querySelector('.btn-selected').classList.remove('btn-selected');
     } catch {}
 }
 
@@ -68,7 +73,7 @@ export function selectTopic(event) {
 // Dynamic selection
 export function selectMode(event) {
     if (selectedMode != '') {
-        document.querySelector('.' + selectedMode + '-selected').classList.remove(selectedMode + '-selected')   
+        document.querySelector('.' + selectedMode + '-selected').classList.remove(selectedMode + '-selected')
     }
     selectedMode = event.currentTarget.id
     switch (selectedMode) {
@@ -98,13 +103,35 @@ export function removeKeyColours() {
     const reds = document.querySelectorAll('.btn-wrong');
     const greens = document.querySelectorAll('.btn-correct');
     Array.from(reds).forEach(element => {
-        element.classList.remove('btn-wrong');});
+        element.classList.remove('btn-wrong');
+    });
     Array.from(greens).forEach(element => {
-        element.classList.remove('btn-correct');});
+        element.classList.remove('btn-correct');
+    });
 }
 
 function singleplayerSelected() {
     document.querySelector('#keyboard').classList.add('sidebar-bot');
     document.querySelector('#topics').classList.add('topics');
     document.querySelector('#btn-single').classList.add('btn-selected');
+    generateKeyboard();
+}
+
+function generateKeyboard() {
+    const qwerty = tools.qwertyString();
+    const qwertyArray = qwerty.split("");
+    const keyboard = document.querySelector('#keyboard');
+    for (let i = 0; i < qwertyArray.length; i++) {
+        if (qwertyArray[i] == "/") {
+            keyboard.appendChild(document.createElement('br'));
+        } else {
+            const button = document.createElement('button');
+            button.appendChild(document.createTextNode(qwertyArray[i]));
+            keyboard.appendChild(button);
+        }
+    }
+}
+
+export function winDisplay(ctx) {
+    console.log()
 }

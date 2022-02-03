@@ -47,7 +47,7 @@ function keyboardEventReset() {
 function randomWordGen() {
     try {
         const wordIndex = Math.floor(Math.random() * ui.wordArray.length);
-        return ui.wordArray[wordIndex]
+        return ui.wordArray[wordIndex];
     } catch {
         console.log("could not locate array");
     }
@@ -58,6 +58,7 @@ export function startGame() {
     keyboardEventReset();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const word = randomWordGen();
+    console.log(word);
     playerScore = 0;
     correctLetters = 0;
 
@@ -69,7 +70,7 @@ export function startGame() {
         let eleLetter = document.createElement("SPAN");
         eleLetter.textContent = String.fromCharCode(160);
         eleLetter.className = "letter";
-        eleLetter.id = "letter-" + i
+        eleLetter.id = "letter-" + i;
         document.querySelector('#letter-display').append(eleLetter);
         }
     wordLength = splitWord.length;
@@ -79,6 +80,7 @@ export function startGame() {
  function gameWon() {
     ui.endToggle();
     ui.removeKeyColours();
+    ui.winDisplay(ctx);
 }
 
 export function gameLost() {

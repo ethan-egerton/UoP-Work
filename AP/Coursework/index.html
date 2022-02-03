@@ -1,81 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Hangman</title>
     <meta charset="UTF-8">
     <meta http-equiv="topic-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Press+Start+2P&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="index.css">
 </head>
-<body>
-    <main class="app">
-        <section class="title">
-            Hangman
+<div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<main class="app display-none">
+    <section class="title">
+        <h1>Hangman</h1>
+    </section>
+    <side class="sidebar">
+        <section class="sidebar-top">
+            <div class="controls">
+                <button class="btn btn-start display-none" id="btn-start">Start Game</button>
+                <button class="btn btn-control" id="btn-single">Singleplayer</button>
+                <button class="btn btn-control" id="btn-comp">Vs Comp</button>
+                <button class="btn btn-control" id="btn-multi">Multiplayer</button>
+                <button class="btn btn-control" id="btn-settings">Settings</button>
+                <button class="btn btn-control" id="btn-history">History</button>
+                <button class="btn btn-quit display-none" id="btn-end">End Game</button>
+            </div>
+            <div class="app-screen">
+                <canvas id="canvas" height="300vh"></canvas>
+            </div>
         </section>
-        <section class="sidebar">
-            <section class="sidebar-top">
-                
-                <div class="controls">
-                    <button class="btn btn-start display-none" id="btn-start">Start Game</button>
-                    <button class="btn" id="btn-single">Singleplayer</button>
-                    <button class="btn" id="btn-comp">Vs Comp</button>
-                    <button class="btn" id="btn-multi">Multiplayer</button>
-                    <button class="btn" id="btn-settings">Settings</button>
-                    <button class="btn" id="btn-history">History</button>
-                    <button class="btn btn-quit display-none" id="btn-end">End Game</button>
-                </div>
-                <div class="app-screen">
-                    <canvas id="canvas" height="300vh"></canvas>
-                </div>
-            </section>
-            <section class="word-display">
-                <div class="topic-display display-none" id="topic-display">
-                    <p style="margin: 20ptopic;">Topic:</p>
-                    <p id="topic-selected">Select a topic</p>
-                </div>
-                <div class="letters display-none" id="letter-display">
-                </div>
-            </section>
-            <section class="sidebar-bot">
-                <div id="topics" class="word-display display-none">
-                    <button class="btn btn-topic" id="food">Food</button>
-                    <button class="btn btn-topic" id="music">Music</button>
-                </div>
-                <div id="keyboard" class="display-none">
-                    <button class="btn btn-keyboard">a</button>
-                    <button class="btn btn-keyboard">b</button>
-                    <button class="btn btn-keyboard">c</button>
-                    <button class="btn btn-keyboard">d</button>
-                    <button class="btn btn-keyboard">e</button>
-                    <button class="btn btn-keyboard">f</button>
-                    <button class="btn btn-keyboard">g</button>
-                    <button class="btn btn-keyboard">h</button>
-                    <button class="btn btn-keyboard">i</button>
-                    <button class="btn btn-keyboard">j</button>
-                    <button class="btn btn-keyboard">k</button>
-                    <button class="btn btn-keyboard">l</button>
-                    <button class="btn btn-keyboard">m</button>
-                    <button class="btn btn-keyboard">n</button>
-                    <button class="btn btn-keyboard">o</button>
-                    <button class="btn btn-keyboard">p</button>
-                    <button class="btn btn-keyboard">q</button>
-                    <button class="btn btn-keyboard">r</button>
-                    <button class="btn btn-keyboard">s</button>
-                    <button class="btn btn-keyboard">t</button> 
-                    <button class="btn btn-keyboard">u</button>
-                    <button class="btn btn-keyboard">v</button>
-                    <button class="btn btn-keyboard">w</button>
-                    <button class="btn btn-keyboard">x</button>
-                    <button class="btn btn-keyboard">y</button>
-                    <button class="btn btn-keyboard">z</button>
-                </div>
-            </section>
+        <section class="word-display">
+            <div class="topic-display display-none" id="topic-display">
+                <p style="margin: 20ptopic;">Topic:</p>
+                <p id="topic-selected">Select a topic</p>
+            </div>
+            <div class="letters display-none" id="letter-display">
+            </div>
         </section>
-    </main>
-</body>
+        <section class="sidebar-bot">
+            <div id="topics" class="word-display display-none">
+                <button class="btn btn-topic" id="food">Food</button>
+                <button class="btn btn-topic" id="music">Music</button>
+            </div>
+            <div id="keyboard" class="display-none">
+            </div>
+        </section>
+        </section>
+</main>
 <script src="index.mjs" type="module"></script>
+
 </html>

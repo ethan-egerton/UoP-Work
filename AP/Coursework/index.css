@@ -1,290 +1,409 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  /* background: linear-gradient(180deg, #FF9DFF, #9DEFFF); */
-  background-size: cover;
-  background-color: azure;
-  min-height: 100vh;
-
-  background: linear-gradient(
-    124deg,
-    #ff2400,
-    #e81d1d,
-    #e8b71d,
-    #e3e81d,
-    #1de840,
-    #1ddde8,
-    #2b1de8,
-    #dd00f3,
-    #dd00f3
-  );
-  background-size: 1800% 1800%;
-
-  -webkit-animation: rainbow 18s ease infinite;
-  -z-animation: rainbow 18s ease infinite;
-  -o-animation: rainbow 18s ease infinite;
-  animation: rainbow 18s ease infinite;
+    /* background: linear-gradient(180deg, #FF9DFF, #9DEFFF); */
+    background-size: cover;
+    background-color: azure;
+    min-height: 100vh;
+    background: linear-gradient( 124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    background-size: 1800% 1800%;
+    -webkit-animation: rainbow 18s ease infinite;
+    -z-animation: rainbow 18s ease infinite;
+    -o-animation: rainbow 18s ease infinite;
+    animation: rainbow 18s ease infinite;
 }
 
 .display-none {
-  display: none !important;
+    display: none !important;
 }
 
 main.app {
-  background: rgb(224, 224, 224);
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 7px;
-  width: 700px;
-
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.219);
-  border: 5px #111 solid;
-  cursor: crosshair !important;
+    background: rgb(224, 224, 224);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 7px;
+    width: 700px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.219);
+    border: 5px #111 solid;
+    cursor: crosshair !important;
 }
 
+h1 {
+    font-size: 27pt;
+}
+
+
 /*--- Buttons ---*/
+
 button.btn {
-  font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
-  padding: 7px 20px;
-  margin: 0px 10px 10px 0px;
-  cursor: crosshair !important;
+    font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
+    padding: 7px 20px;
+    margin: 0px 10px 10px 0px;
+    cursor: crosshair !important;
+}
+
+button.btn-control {
+    width: 90%;
+    transition: all 158ms ease-out;
+}
+
+button.btn-control:hover {
+    width: 110%;
+    transition: all 158ms ease-out;
 }
 
 button.btn-selected {
-  background: rgb(0, 124, 207) !important;
-  color: #fff !important;
+    width: 110%;
+    transition: all 158ms ease-out;
+    background: rgb(87, 166, 219) !important;
+    color: #fff !important;
 }
 
 button.btn-start {
-  background: rgb(0, 177, 0) !important;
-  color: #fff !important;
-  transition: all 158ms ease-out;
-  width: 100%;
+    background: rgb(0, 177, 0) !important;
+    color: #fff !important;
+    transition: all 158ms ease-out;
+    width: 90%;
 }
 
 button.btn-quit {
-  background: rgb(163, 56, 56) !important;
-  color: #fff !important;
-  transition: all 158ms ease-out;
-  width: 100%;
+    background: rgb(163, 56, 56) !important;
+    color: #fff !important;
+    transition: all 158ms ease-out;
+    width: 100%;
 }
 
 button.btn-start:hover {
-  background: rgb(87, 255, 87) !important;
-  color: #111 !important;
-  transition: all 158ms ease-out;
-  width: calc(100% + 12%);
+    background: rgb(87, 255, 87) !important;
+    color: #111 !important;
+    transition: all 158ms ease-out;
+    width: calc(100% + 10%);
 }
+
 button.btn-quit:hover {
-  background: rgb(253, 108, 108) !important;
-  color: #111 !important;
-  transition: all 158ms ease-out;
-  width: calc(100% + 12%);
+    background: rgb(253, 108, 108) !important;
+    color: #111 !important;
+    transition: all 158ms ease-out;
 }
 
 button.btn-topic {
-  background: rgb(0, 52, 148) !important;
-  color: #fff !important;
-  transition: all 158ms ease-out;
+    background: rgb(0, 52, 148) !important;
+    color: #fff !important;
+    transition: all 158ms ease-out;
 }
+
 button.btn-topic:hover {
-  background: rgb(62, 129, 255) !important;
-  color: #111 !important;
-  transition: all 158ms ease-out;
+    background: rgb(62, 129, 255) !important;
+    color: #111 !important;
+    transition: all 158ms ease-out;
 }
 
 button.btn-keyboard {
-  background: rgb(0, 52, 148) !important;
-  color: #fff !important;
-  transition: all 158ms ease-out;
+    background: rgb(0, 52, 148) !important;
+    color: #fff !important;
+    transition: all 158ms ease-out;
 }
+
 button.btn-keyboard:hover {
-  background: rgb(62, 129, 255) !important;
-  color: #111 !important;
-  transition: all 158ms ease-out;
+    background: rgb(62, 129, 255) !important;
+    color: #111 !important;
+    transition: all 158ms ease-out;
 }
 
 button.btn-wrong {
-  background: rgb(109, 109, 109) !important;
-  color: #111 !important;
-  transition: all 158ms ease-out;
+    background: rgb(109, 109, 109) !important;
+    color: #111 !important;
+    transition: all 158ms ease-out;
 }
 
 button.btn-correct {
-  background: rgb(0, 142, 207) !important;
-  color: #111 !important;
-  transition: all 158ms ease-out;
+    background: rgb(0, 142, 207) !important;
+    color: #111 !important;
+    transition: all 158ms ease-out;
 }
 
 section.sup-title {
-  display: block !important;
-  width: auto !important;
+    display: block !important;
+    width: auto !important;
 }
+
 
 /*--- Sections ---*/
+
 section.title {
-  padding: 10px 0px;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 5px;
-  background: #111;
-  color: #fff !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 27pt;
-  font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
+    padding: 10px 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 5px;
+    background: #111;
+    color: #fff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27pt;
+    font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
 }
 
+
 /*--- Divs ---*/
+
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
 }
 
 div.controls {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  justify-content: left;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    justify-content: left;
+    align-items: flex-start;
 }
 
 div.app-screen {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .sidebar-top {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .topics {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  padding-top: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 3%;
 }
 
-
 div.topic-display {
-  display: block;
-  text-align: center;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 10px 0px 10px 0px;
-  border-bottom: 3px solid #111;
-  position: relative;
-  font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
-  font-size: 17pt;
+    display: block;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 3px solid #111;
+    position: relative;
+    font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
+    font-size: 17pt;
 }
 
 div.letters {
-  display: flex;
-  text-align: center;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-  font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
-  font-size: 17pt;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
+    font-size: 17pt;
 }
 
 div.sidebar-bot {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  padding-top: 2%;
-  border: 3px solid #111;
-  border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-top: 2%;
+    border: 3px solid #111;
+    border-radius: 2px;
 }
 
 section.topics {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 span.letter::after {
-  content: "";
-  display: block;
-  position: relative;
-  width: 30px;
-  height: 5px;
-  left: -8px;
-  background: #111;
+    content: "";
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 5px;
+    left: -8px;
+    background: #111;
 }
 
 span.letter:not(:first-child) {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 
 canvas {
-  border: 2px #111 solid;
-  border-radius: 5px;
+    border: 2px #111 solid;
+    border-radius: 5px;
 }
+
+
+/* css stuff i dont own */
 
 @-webkit-keyframes rainbow {
-  0% {
-    background-position: 0% 82%;
-  }
-  50% {
-    background-position: 100% 19%;
-  }
-  100% {
-    background-position: 0% 82%;
-  }
-}
-@-moz-keyframes rainbow {
-  0% {
-    background-position: 0% 82%;
-  }
-  50% {
-    background-position: 100% 19%;
-  }
-  100% {
-    background-position: 0% 82%;
-  }
-}
-@-o-keyframes rainbow {
-  0% {
-    background-position: 0% 82%;
-  }
-  50% {
-    background-position: 100% 19%;
-  }
-  100% {
-    background-position: 0% 82%;
-  }
-}
-@keyframes rainbow {
-  0% {
-    background-position: 0% 82%;
-  }
-  50% {
-    background-position: 100% 19%;
-  }
-  100% {
-    background-position: 0% 82%;
-  }
+    0% {
+        background-position: 0% 82%;
+    }
+    50% {
+        background-position: 100% 19%;
+    }
+    100% {
+        background-position: 0% 82%;
+    }
 }
 
+@-moz-keyframes rainbow {
+    0% {
+        background-position: 0% 82%;
+    }
+    50% {
+        background-position: 100% 19%;
+    }
+    100% {
+        background-position: 0% 82%;
+    }
+}
+
+@-o-keyframes rainbow {
+    0% {
+        background-position: 0% 82%;
+    }
+    50% {
+        background-position: 100% 19%;
+    }
+    100% {
+        background-position: 0% 82%;
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        background-position: 0% 82%;
+    }
+    50% {
+        background-position: 100% 19%;
+    }
+    100% {
+        background-position: 0% 82%;
+    }
+}
+
+
 /* rainbow bg made by @nohoid */
+
+.lds-roller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+}
+
+.lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    margin: -4px 0 0 -4px;
+}
+
+.lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+}
+
+.lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+}
+
+.lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+}
+
+.lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+}
+
+.lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+}
+
+.lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+}
+
+.lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+}
+
+.lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+}
+
+.lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+}
+
+.lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+}
+
+.lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+}
+
+.lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+}
+
+.lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+}
+
+.lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+}
+
+.lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+}
+
+.lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+}
+
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
