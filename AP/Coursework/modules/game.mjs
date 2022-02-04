@@ -1,6 +1,6 @@
 import * as ui from './ui.mjs'; 
 
-// Decloration
+// Declaration
 let splitWord = []
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
@@ -19,6 +19,7 @@ function checkLetters(event) {
         if (letter == splitWord[i]) {
             correctLetters += 1
             event.currentTarget.classList.add('btn-correct');
+            console.log(splitWord);
             document.querySelector("#letter-" + i).textContent = splitWord[i];
             foundLetter = true;
             event.currentTarget.removeEventListener('click', checkLetters);
@@ -55,9 +56,11 @@ function randomWordGen() {
 
 export function startGame() {
     ui.startToggle()
+    ui.generateKeyboard();
     keyboardEventReset();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const word = randomWordGen();
+    let spaceCounter = 0;
     console.log(word);
     playerScore = 0;
     correctLetters = 0;
@@ -67,25 +70,39 @@ export function startGame() {
     // Set letters in word display
     splitWord = word.split("");
     for (let i = 0; i < splitWord.length; i++) {
-        let eleLetter = document.createElement("SPAN");
-        eleLetter.textContent = String.fromCharCode(160);
-        eleLetter.className = "letter";
-        eleLetter.id = "letter-" + i;
-        document.querySelector('#letter-display').append(eleLetter);
+        if (splitWord[i] === ' ') {
+            spaceCounter += 1;
+            const eleLetter = document.createElement("SPAN");
+            eleLetter.textContent = String.fromCharCode(32);
+            eleLetter.className = "space";
+            document.querySelector('#letter-display').append(eleLetter);
         }
+        else {
+            const eleLetter = document.createElement("SPAN");
+            eleLetter.textContent = String.fromCharCode(160);
+            eleLetter.className = "letter";
+            eleLetter.id = "letter-" + (i - spaceCounter);
+            document.querySelector('#letter-display').append(eleLetter);
+        }    
+    }
+
+    for (let i = 0; i < splitWord.length; i++) {
+        const element = splitWord[i];
+        if (element === " ") {splitWord.splice(i, 1)}
+    }
+    console.log(splitWord);
     wordLength = splitWord.length;
-    console.log(wordLength);
 }
 
  function gameWon() {
+    ui.removeKeyboard();
     ui.endToggle();
-    ui.removeKeyColours();
     ui.winDisplay(ctx);
 }
 
 export function gameLost() {
+    ui.removeKeyboard();
     ui.endToggle();
-    ui.removeKeyColours();
 }
 
 // Word Display 

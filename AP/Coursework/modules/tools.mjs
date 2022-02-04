@@ -55,6 +55,7 @@ export function fetchWordData() {
             "experimental",
             "grunge",
             "ska"
+
         ]
     };
 }

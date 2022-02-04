@@ -12,7 +12,7 @@ function clearWordDisplay() {
 }
 
 export function displayGame() {
-    console.log("loaded")
+    document.querySelector('.lds-roller').classList.add('display-none')
     document.querySelector('.app').classList.remove('display-none');
 }
 
@@ -62,9 +62,9 @@ function clearControls() {
 
 // Topic Selecting
 export function selectTopic(event) {
-    let topic = event.currentTarget.id;
+    const topic = event.currentTarget.id;
     document.querySelector("#topic-selected").textContent = topic;
-    let wordsObj = tools.fetchWordData();
+    const wordsObj = tools.fetchWordData();
     wordArray = wordsObj[topic];
     document.querySelector('#btn-start').classList.remove('display-none');
     document.querySelector('#btn-start').addEventListener('click', game.startGame);
@@ -99,25 +99,13 @@ export function selectMode(event) {
     event.currentTarget.classList += ' ' + selectedMode + '-selected'
 }
 
-export function removeKeyColours() {
-    const reds = document.querySelectorAll('.btn-wrong');
-    const greens = document.querySelectorAll('.btn-correct');
-    Array.from(reds).forEach(element => {
-        element.classList.remove('btn-wrong');
-    });
-    Array.from(greens).forEach(element => {
-        element.classList.remove('btn-correct');
-    });
-}
-
 function singleplayerSelected() {
     document.querySelector('#keyboard').classList.add('sidebar-bot');
     document.querySelector('#topics').classList.add('topics');
     document.querySelector('#btn-single').classList.add('btn-selected');
-    generateKeyboard();
 }
 
-function generateKeyboard() {
+export function generateKeyboard() {
     const qwerty = tools.qwertyString();
     const qwertyArray = qwerty.split("");
     const keyboard = document.querySelector('#keyboard');
@@ -127,8 +115,16 @@ function generateKeyboard() {
         } else {
             const button = document.createElement('button');
             button.appendChild(document.createTextNode(qwertyArray[i]));
+            button.classList = ("btn btn-keyboard");
             keyboard.appendChild(button);
         }
+    }
+}
+
+export function removeKeyboard() {
+    const keyboard = document.querySelector('#keyboard');
+    while (keyboard.firstChild) {
+        keyboard.removeChild(keyboard.firstChild);
     }
 }
 
