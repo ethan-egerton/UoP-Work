@@ -7,27 +7,38 @@ const ctx = canvas.getContext('2d');
 let playerScore = 0
 let correctLetters = 0
 let wordLength = 0
+let usedLetter = []
 
 // Letter Validation
 
-function checkLetters(event) {
+export function checkLetters(event = null, input = null) {
     // Cycles through every letter in array splitWord to check if element
     // matches the letter.
-    const letter = event.currentTarget.textContent;
+    let letter, button = undefined;
+    if (event != null) {
+        letter = event.currentTarget.textContent;
+        button = event.currentTarget;
+    } else {
+        letter = input;
+        button = document.querySelector(`#keyboard-${letter}`);
+    }
     let foundLetter = false;
+    if (usedLetter.includes(letter)) {
+        return;
+    }
     for (let i = 0; i < wordLength; i++) {
         if (letter == splitWord[i]) {
             correctLetters += 1
-            event.currentTarget.classList.add('btn-correct');
-            console.log(splitWord);
+            button.classList.add('btn-correct');
             document.querySelector("#letter-" + i).textContent = splitWord[i];
             foundLetter = true;
-            event.currentTarget.removeEventListener('click', checkLetters);
+            button.removeEventListener('click', checkLetters);
+            usedLetter.push(letter);
         }
     }
     if (foundLetter == false) {
-        event.currentTarget.classList.add('btn-wrong');
-        event.currentTarget.removeEventListener('click', checkLetters);
+        button.classList.add('btn-wrong');
+        button.removeEventListener('click', checkLetters);
         playerScore += 1;
     }
     canvasBuild(playerScore);
@@ -64,6 +75,7 @@ export function startGame() {
     console.log(word);
     playerScore = 0;
     correctLetters = 0;
+    usedLetter = []
 
     canvasBuild();
 
@@ -90,7 +102,6 @@ export function startGame() {
         const element = splitWord[i];
         if (element === " ") {splitWord.splice(i, 1)}
     }
-    console.log(splitWord);
     wordLength = splitWord.length;
 }
 

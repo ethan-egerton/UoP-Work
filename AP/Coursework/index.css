@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
   -z-animation: rainbow 18s ease infinite;
   -o-animation: rainbow 18s ease infinite;
   animation: rainbow 18s ease infinite;
+  cursor: crosshair !important;
 }
 
 .display-none {
@@ -44,11 +46,18 @@ main.app {
   width: 700px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.219);
   border: 5px #111 solid;
-  cursor: crosshair !important;
 }
 
 h1 {
   font-size: 27pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 16pt;
 }
 
 /*--- Buttons ---*/
@@ -120,6 +129,7 @@ button.btn-keyboard {
   background: rgb(0, 52, 148) !important;
   color: #fff !important;
   transition: all 158ms ease-out;
+  width: 8%;
 }
 
 button.btn-keyboard:hover {
@@ -143,6 +153,11 @@ button.btn-correct {
 section.sup-title {
   display: block !important;
   width: auto !important;
+}
+
+.button-break {
+  flex-basis: 100%;
+  height: 0;
 }
 
 /*--- Sections ---*/

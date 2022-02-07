@@ -11,6 +11,7 @@ function clearWordDisplay() {
     }
 }
 
+// called when page loads
 export function displayGame() {
     document.querySelector('.lds-roller').classList.add('display-none')
     document.querySelector('.app').classList.remove('display-none');
@@ -109,19 +110,34 @@ export function generateKeyboard() {
     const qwerty = tools.qwertyString();
     const qwertyArray = qwerty.split("");
     const keyboard = document.querySelector('#keyboard');
+    // button generation, when it hits a / it creates line break
     for (let i = 0; i < qwertyArray.length; i++) {
         if (qwertyArray[i] == "/") {
-            keyboard.appendChild(document.createElement('br'));
+            const button = document.createElement('div');
+            button.classList = ('button-break');
+            keyboard.appendChild(button);
         } else {
             const button = document.createElement('button');
             button.appendChild(document.createTextNode(qwertyArray[i]));
+            button.id = "keyboard-" + qwertyArray[i];
             button.classList = ("btn btn-keyboard");
             keyboard.appendChild(button);
         }
     }
+    // keydown assignment
+    document.addEventListener('keydown', keyboardPress);
+}
+
+function keyboardPress(e) {
+    let keyString = e.code;
+    if (keyString.startsWith("Key")) {
+        keyString = keyString.slice(3).toLowerCase();
+        game.checkLetters(null, keyString);
+    }
 }
 
 export function removeKeyboard() {
+    document.removeEventListener('keydown', keyboardPress);
     const keyboard = document.querySelector('#keyboard');
     while (keyboard.firstChild) {
         keyboard.removeChild(keyboard.firstChild);
