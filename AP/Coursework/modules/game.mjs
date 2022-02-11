@@ -1,4 +1,4 @@
-import * as ui from './ui.mjs'; 
+import * as ui from './ui.mjs';
 
 // Declaration
 let splitWord = []
@@ -33,7 +33,6 @@ export function checkLetters(event = null, input = null) {
             document.querySelector("#letter-" + i).textContent = splitWord[i];
             foundLetter = true;
             button.removeEventListener('click', checkLetters);
-            usedLetter.push(letter);
         }
     }
     if (foundLetter == false) {
@@ -41,8 +40,9 @@ export function checkLetters(event = null, input = null) {
         button.removeEventListener('click', checkLetters);
         playerScore += 1;
     }
+    usedLetter.push(letter);
     canvasBuild(playerScore);
-    if (correctLetters === wordLength) {gameWon()};
+    if (correctLetters === wordLength) { gameWon() };
 }
 
 
@@ -52,8 +52,8 @@ export function checkLetters(event = null, input = null) {
 function keyboardEventReset() {
     const keyboardButtons = document.querySelectorAll('.btn-keyboard')
     Array.from(keyboardButtons).forEach(element => {
-    element.addEventListener('click', checkLetters);
-    });   
+        element.addEventListener('click', checkLetters);
+    });
 }
 
 function randomWordGen() {
@@ -88,38 +88,39 @@ export function startGame() {
             eleLetter.textContent = String.fromCharCode(32);
             eleLetter.className = "space";
             document.querySelector('#letter-display').append(eleLetter);
-        }
-        else {
+        } else {
             const eleLetter = document.createElement("SPAN");
             eleLetter.textContent = String.fromCharCode(160);
             eleLetter.className = "letter";
             eleLetter.id = "letter-" + (i - spaceCounter);
             document.querySelector('#letter-display').append(eleLetter);
-        }    
+        }
     }
 
     for (let i = 0; i < splitWord.length; i++) {
         const element = splitWord[i];
-        if (element === " ") {splitWord.splice(i, 1)}
+        if (element === " ") { splitWord.splice(i, 1) }
     }
     wordLength = splitWord.length;
 }
 
- function gameWon() {
+function gameWon() {
     ui.removeKeyboard();
+    ui.winDisplay();
     ui.endToggle();
-    ui.winDisplay(ctx);
 }
 
 export function gameLost() {
     ui.removeKeyboard();
+    ui.lossDisplay();
     ui.endToggle();
+
 }
 
 // Word Display 
 
 function canvasBuild(score) {
-    switch(score){
+    switch (score) {
         case 1:
             // Base
             ctx.fillStyle = 'black';
@@ -150,29 +151,29 @@ function canvasBuild(score) {
         case 7:
             // R Arm
             ctx.beginPath();
-            ctx.moveTo(153,120);
-            ctx.lineTo(170,160);
+            ctx.moveTo(153, 120);
+            ctx.lineTo(170, 160);
             ctx.stroke();
             break;
         case 8:
             // L Arm
             ctx.beginPath();
-            ctx.moveTo(155,120);
-            ctx.lineTo(136,160);
+            ctx.moveTo(155, 120);
+            ctx.lineTo(136, 160);
             ctx.stroke();
             break;
         case 9:
             // R Leg
             ctx.beginPath();
-            ctx.moveTo(153,203);
-            ctx.lineTo(170,243);
+            ctx.moveTo(153, 203);
+            ctx.lineTo(170, 243);
             ctx.stroke();
             break;
         case 10:
             // L Leg
             ctx.beginPath();
-            ctx.moveTo(155,203);
-            ctx.lineTo(136,243);
+            ctx.moveTo(155, 203);
+            ctx.lineTo(136, 243);
             ctx.stroke();
             gameLost();
             break;

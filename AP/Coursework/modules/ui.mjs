@@ -144,6 +144,17 @@ export function removeKeyboard() {
     }
 }
 
-export function winDisplay(ctx) {
-    console.log()
+export function endDisplay(winStatus) {
+    if (winStatus === true) {
+        const displayText = "YOU WIN!"
+    } else {
+        const displayText = "YOU LOSE!"
+    }
+
+    document.querySelector('#btn-end').classList.add('display-none');
+    const sidebar = document.querySelector('#sidebar-top');
+    const p = document.createElement('P');
+    p.appendChild(document.createTextNode(displayText))
+
+
 }
