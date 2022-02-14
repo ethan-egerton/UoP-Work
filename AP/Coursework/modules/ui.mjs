@@ -2,7 +2,7 @@ import * as game from './game.mjs';
 import * as tools from './tools.mjs';
 
 export let wordArray = [];
-let selectedMode = '';
+let selectedMode = "";
 
 function clearWordDisplay() {
     const element = document.querySelector("#letter-display")
@@ -137,7 +137,6 @@ function keyboardPress(e) {
 }
 
 export function removeKeyboard() {
-    document.removeEventListener('keydown', keyboardPress);
     const keyboard = document.querySelector('#keyboard');
     while (keyboard.firstChild) {
         keyboard.removeChild(keyboard.firstChild);
@@ -145,16 +144,27 @@ export function removeKeyboard() {
 }
 
 export function endDisplay(winStatus) {
+    document.removeEventListener('keydown', keyboardPress);
+    document.querySelector('#btn-end').classList.add('display-none');
+    let displayText;
+
     if (winStatus === true) {
-        const displayText = "YOU WIN!"
+        displayText = "YOU WIN!";
     } else {
-        const displayText = "YOU LOSE!"
+        displayText = "YOU LOSE!";
     }
 
-    document.querySelector('#btn-end').classList.add('display-none');
-    const sidebar = document.querySelector('#sidebar-top');
+    const sidebar = document.querySelector('.sidebar-top');
     const p = document.createElement('P');
-    p.appendChild(document.createTextNode(displayText))
+    p.appendChild(document.createTextNode(displayText));
+    p.id = "end-text";
+    p.classList = ("h1");
 
+    const button = document.createElement('button');
+    button.appendChild(document.createTextNode("Return to menu"))
+    button.id = "return-button";
+    p.classList = ("btn-quit")
 
+    sidebar.appendChild(p);
+    sidebar.appendChild(button);
 }

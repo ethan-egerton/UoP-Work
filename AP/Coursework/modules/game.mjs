@@ -105,14 +105,14 @@ export function startGame() {
 }
 
 function gameWon() {
+    ui.endDisplay(true);
     ui.removeKeyboard();
-    ui.winDisplay();
     ui.endToggle();
 }
 
 export function gameLost() {
+    ui.endDisplay(false);
     ui.removeKeyboard();
-    ui.lossDisplay();
     ui.endToggle();
 
 }
