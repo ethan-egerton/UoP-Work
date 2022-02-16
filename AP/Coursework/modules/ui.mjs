@@ -15,47 +15,47 @@ function clearWordDisplay() {
 export function displayGame() {
     document.querySelector('.lds-roller').classList.add('display-none')
     document.querySelector('.app').classList.remove('display-none');
+    document.querySelector('#btn-single').addEventListener('click', selectMode)
+    document.querySelector('#btn-comp').addEventListener('click', selectMode)
+    document.querySelector('#btn-multi').addEventListener('click', selectMode)
+    document.querySelector('#btn-settings').addEventListener('click', selectMode)
+    document.querySelector('#btn-history').addEventListener('click', selectMode)
+    document.querySelector('#btn-end').addEventListener('click', hideGameUI);
+    document.querySelector('#food').addEventListener('click', selectTopic);
+    document.querySelector('#music').addEventListener('click', selectTopic);
+}
+
+export function hideGameUI(endState = false) {
+    removeKeyboard();
+    toggleDisplay(false, ['#topic-display', '#btn-single', '#btn-multi', '#btn-comp', '#btn-settings', '#btn-history', '#topics'])
+    toggleDisplay(true, ['#letter-display', '#btn-end', '#keyboard'])
+    if (endState == true) {
+        document.querySelector('#end-text').remove();
+        document.querySelector('#return-button').remove();
+    }
 }
 
 // Display Toggles
+
+export function toggleDisplay(hide, elements) {
+    for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        if (hide == true) {
+            document.querySelector(element).classList.add('display-none');
+        } else {
+            document.querySelector(element).classList.remove('display-none');
+        }
+    }
+
+}
 export function startToggle() {
     clearWordDisplay()
-    document.querySelector('#topic-display').classList.add('display-none');
-    document.querySelector('#btn-single').classList.add('display-none');
-    document.querySelector('#btn-start').classList.add('display-none');
-    document.querySelector('#btn-multi').classList.add('display-none');
-    document.querySelector('#btn-comp').classList.add('display-none');
-    document.querySelector('#btn-settings').classList.add('display-none');
-    document.querySelector('#btn-history').classList.add('display-none');
-    document.querySelector('#topics').classList.add('display-none');
-    document.querySelector('#letter-display').classList.remove('display-none');
-    document.querySelector('#btn-end').classList.remove('display-none');
-    document.querySelector('#keyboard').classList.remove('display-none');
-}
-
-export function endToggle() {
-    document.querySelector('#topic-display').classList.remove('display-none');
-    document.querySelector('#btn-single').classList.remove('display-none');
-    document.querySelector('#btn-start').classList.remove('display-none');
-    document.querySelector('#btn-multi').classList.remove('display-none');
-    document.querySelector('#btn-comp').classList.remove('display-none');
-    document.querySelector('#btn-settings').classList.remove('display-none');
-    document.querySelector('#btn-history').classList.remove('display-none');
-    document.querySelector('#topics').classList.remove('display-none');
-    document.querySelector('#letter-display').classList.add('display-none');
-    document.querySelector('#btn-end').classList.add('display-none');
-    document.querySelector('#keyboard').classList.add('display-none')
-}
-
-function topicOnToggle() {
-    document.querySelector('#topic-display').classList.remove('display-none');
-    document.querySelector('#topics').classList.remove('display-none');
+    toggleDisplay(true, ['#topic-display', '#btn-single', '#btn-multi', '#btn-comp', '#btn-settings', '#btn-history', '#topics'])
+    toggleDisplay(false, ['#letter-display', '#btn-end', '#keyboard'])
 }
 
 function clearControls() {
-    document.querySelector('#topic-display').classList.add('display-none');
-    document.querySelector('#topics').classList.add('display-none');
-    document.querySelector('#btn-start').classList.add('display-none');
+    toggleDisplay(true, ['#topic-display', '#topics'])
     try {
         document.querySelector('.btn-selected').classList.remove('btn-selected');
     } catch {}
@@ -67,8 +67,7 @@ export function selectTopic(event) {
     document.querySelector("#topic-selected").textContent = topic;
     const wordsObj = tools.fetchWordData();
     wordArray = wordsObj[topic];
-    document.querySelector('#btn-start').classList.remove('display-none');
-    document.querySelector('#btn-start').addEventListener('click', game.startGame);
+    game.startGame();
 }
 
 // Dynamic selection
@@ -80,8 +79,8 @@ export function selectMode(event) {
     switch (selectedMode) {
         case 'btn-single':
             clearControls();
-            topicOnToggle();
-            singleplayerSelected()
+            toggleDisplay(false, ['#topic-display', '#topics'])
+            singleplayerSelected();
             break;
         case 'btn-comp':
             clearControls();
@@ -97,7 +96,7 @@ export function selectMode(event) {
             break;
     }
 
-    event.currentTarget.classList += ' ' + selectedMode + '-selected'
+    event.currentTarget.classList += ' ' + selectedMode + '-selected';
 }
 
 function singleplayerSelected() {
@@ -146,7 +145,7 @@ export function removeKeyboard() {
 export function endDisplay(winStatus) {
     document.removeEventListener('keydown', keyboardPress);
     document.querySelector('#btn-end').classList.add('display-none');
-    let displayText;
+    let displayText = undefined;
 
     if (winStatus === true) {
         displayText = "YOU WIN!";
@@ -154,17 +153,18 @@ export function endDisplay(winStatus) {
         displayText = "YOU LOSE!";
     }
 
-    const sidebar = document.querySelector('.sidebar-top');
+    const sidebar = document.querySelector('.controls');
     const p = document.createElement('P');
     p.appendChild(document.createTextNode(displayText));
     p.id = "end-text";
-    p.classList = ("h1");
+    p.classList = ("end-text");
 
     const button = document.createElement('button');
     button.appendChild(document.createTextNode("Return to menu"))
     button.id = "return-button";
-    p.classList = ("btn-quit")
+    button.classList = ("btn btn-quit")
+    button.addEventListener('click', hideGameUI(true));
 
-    sidebar.appendChild(p);
-    sidebar.appendChild(button);
+    sidebar.prepend(button);
+    sidebar.prepend(p);
 }

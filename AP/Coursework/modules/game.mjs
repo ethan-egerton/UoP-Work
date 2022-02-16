@@ -42,7 +42,7 @@ export function checkLetters(event = null, input = null) {
     }
     usedLetter.push(letter);
     canvasBuild(playerScore);
-    if (correctLetters === wordLength) { gameWon() };
+    if (correctLetters === wordLength) { ui.endDisplay(true) };
 }
 
 
@@ -104,18 +104,7 @@ export function startGame() {
     wordLength = splitWord.length;
 }
 
-function gameWon() {
-    ui.endDisplay(true);
-    ui.removeKeyboard();
-    ui.endToggle();
-}
 
-export function gameLost() {
-    ui.endDisplay(false);
-    ui.removeKeyboard();
-    ui.endToggle();
-
-}
 
 // Word Display 
 
@@ -175,7 +164,7 @@ function canvasBuild(score) {
             ctx.moveTo(155, 203);
             ctx.lineTo(136, 243);
             ctx.stroke();
-            gameLost();
+            ui.endDisplay(false);
             break;
     }
 }
