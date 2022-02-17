@@ -1,0 +1,15 @@
+{
+  "name": "ap-coursework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "type": "module",
+  "author": "Ethan Egerton",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
