@@ -4,13 +4,6 @@ import * as tools from './tools.mjs';
 export let wordArray = [];
 let selectedMode = "";
 
-function clearWordDisplay() {
-    const element = document.querySelector("#letter-display")
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-}
-
 // called when page loads
 export function displayGame() {
     document.querySelector('.lds-roller').classList.add('display-none')
@@ -25,18 +18,7 @@ export function displayGame() {
     document.querySelector('#music').addEventListener('click', selectTopic);
 }
 
-export function hideGameUI(endState = false) {
-    removeKeyboard();
-    toggleDisplay(false, ['#topic-display', '#btn-single', '#btn-multi', '#btn-comp', '#btn-settings', '#btn-history', '#topics'])
-    toggleDisplay(true, ['#letter-display', '#btn-end', '#keyboard'])
-    if (endState == true) {
-        document.querySelector('#end-text').remove();
-        document.querySelector('#return-button').remove();
-    }
-}
-
 // Display Toggles
-
 export function toggleDisplay(hide, elements) {
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
@@ -48,6 +30,7 @@ export function toggleDisplay(hide, elements) {
     }
 
 }
+
 export function startToggle() {
     clearWordDisplay()
     toggleDisplay(true, ['#topic-display', '#btn-single', '#btn-multi', '#btn-comp', '#btn-settings', '#btn-history', '#topics'])
@@ -58,7 +41,40 @@ function clearControls() {
     toggleDisplay(true, ['#topic-display', '#topics'])
     try {
         document.querySelector('.btn-selected').classList.remove('btn-selected');
+        removeKeyboard();
     } catch {}
+}
+
+export function hideGameUI(endState = false) {
+    removeKeyboard();
+    toggleDisplay(false, ['#topic-display', '#btn-single', '#btn-multi', '#btn-comp', '#btn-settings', '#btn-history', '#topics'])
+    toggleDisplay(true, ['#letter-display', '#btn-end', '#keyboard'])
+    if (endState == true) {
+        document.querySelector('#end-text').remove();
+        document.querySelector('#return-button').remove();
+    }
+}
+
+function clearWordDisplay() {
+    const element = document.querySelector("#letter-display")
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
+
+export function keyboardEventCheck() {
+    const keyboardButtons = document.querySelectorAll('.btn-keyboard')
+    Array.from(keyboardButtons).forEach(element => {
+        element.addEventListener('click', game.checkLetters);
+    });
+}
+
+function keyboardEventInput() {
+    const keyboardButtons = document.querySelectorAll('.btn-keyboard')
+    Array.from(keyboardButtons).forEach(element => {
+        element.addEventListener('click', game.inputLetters);
+    });
+    document.addEventListener('keydown', game.inputLetters);
 }
 
 // Topic Selecting
@@ -84,6 +100,8 @@ export function selectMode(event) {
             break;
         case 'btn-comp':
             clearControls();
+            vsComputerSelected();
+            generateKeyboard(true);
             break;
         case 'btn-multi':
             clearControls();
@@ -105,7 +123,13 @@ function singleplayerSelected() {
     document.querySelector('#btn-single').classList.add('btn-selected');
 }
 
-export function generateKeyboard() {
+function vsComputerSelected() {
+    document.querySelector('#btn-comp').classList.add('btn-selected');
+    document.querySelector('#keyboard').classList.add('sidebar-bot');
+    toggleDisplay(false, ['#keyboard'])
+}
+
+export function generateKeyboard(backspace = false) {
     const qwerty = tools.qwertyString();
     const qwertyArray = qwerty.split("");
     const keyboard = document.querySelector('#keyboard');
@@ -123,8 +147,13 @@ export function generateKeyboard() {
             keyboard.appendChild(button);
         }
     }
-    // keydown assignment
-    document.addEventListener('keydown', keyboardPress);
+    if (backspace == true) {
+        const button = document.createElement('button');
+        button.appendChild(document.createTextNode("←"));
+        button.id = "keyboard-backspace";
+        button.classList = ("btn btn-keyboard");
+        keyboard.appendChild(button);
+    }
 }
 
 function keyboardPress(e) {

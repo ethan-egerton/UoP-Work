@@ -8,9 +8,9 @@ let playerScore = 0
 let correctLetters = 0
 let wordLength = 0
 let usedLetter = []
+let wordM
 
 // Letter Validation
-
 export function checkLetters(event = null, input = null) {
     // Cycles through every letter in array splitWord to check if element
     // matches the letter.
@@ -45,17 +45,22 @@ export function checkLetters(event = null, input = null) {
     if (correctLetters === wordLength) { ui.endDisplay(true) };
 }
 
+export function inputLetters(event = null, input = null) {
+    let letter, button = undefined;
+    if (event != null) {
+        letter = event.currentTarget.textContent;
+        button = event.currentTarget;
+    } else {
+        letter = input;
+        button = document.querySelector(`#keyboard-${letter}`);
+    }
+
+}
+
 
 // Start / End
 
 // Adds the checkLetters func back onto the buttons
-function keyboardEventReset() {
-    const keyboardButtons = document.querySelectorAll('.btn-keyboard')
-    Array.from(keyboardButtons).forEach(element => {
-        element.addEventListener('click', checkLetters);
-    });
-}
-
 function randomWordGen() {
     try {
         const wordIndex = Math.floor(Math.random() * ui.wordArray.length);
@@ -68,7 +73,8 @@ function randomWordGen() {
 export function startGame() {
     ui.startToggle()
     ui.generateKeyboard();
-    keyboardEventReset();
+    document.addEventListener('keydown', ui.keyboardPress);
+    ui.keyboardEventCheck();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const word = randomWordGen();
     let spaceCounter = 0;

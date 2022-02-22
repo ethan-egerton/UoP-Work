@@ -73,7 +73,7 @@ button.btn-selected {
     width: 110%;
     transition: all 158ms ease-out;
     background: rgb(87, 166, 219) !important;
-    color: #fff !important;
+    color: #000 !important;
 }
 
 button.btn-start {
