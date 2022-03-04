@@ -19,24 +19,6 @@ body {
     cursor: crosshair !important;
 }
 
-.display-none {
-    display: none !important;
-}
-
-main.app {
-    background: rgb(224, 224, 224);
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 7px;
-    width: 700px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.219);
-    border: 5px #111 solid;
-}
-
 h1 {
     font-size: 27pt;
 }
@@ -49,98 +31,120 @@ h3 {
     font-size: 16pt;
 }
 
+canvas {
+  border: 2px #111 solid;
+  border-radius: 5px;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.app {
+  background: rgb(224, 224, 224);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  width: 700px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.219);
+  border: 5px #111 solid;
+}
 
 /*--- Buttons ---*/
 
-button.btn {
+.btn {
     font-family: "Press Start 2P", "Segoe UI", Tahoma, Verdana, sans-serif !important;
     padding: 7px 20px;
     margin: 0px 10px 10px 0px;
     cursor: crosshair !important;
 }
 
-button.btn-control {
+.btn-control {
     width: 90%;
     transition: all 158ms ease-out;
 }
 
-button.btn-control:hover {
+.btn-control:hover {
     width: 110%;
     transition: all 158ms ease-out;
 }
 
-button.btn-selected {
+.btn-selected {
     width: 110%;
     transition: all 158ms ease-out;
     background: rgb(87, 166, 219) !important;
     color: #000 !important;
 }
 
-button.btn-start {
+.btn-start {
     background: rgb(0, 177, 0) !important;
     color: #fff !important;
     transition: all 158ms ease-out;
     width: 90%;
 }
 
-button.btn-quit {
+.btn-quit {
     background: rgb(163, 56, 56) !important;
     color: #fff !important;
     transition: all 158ms ease-out;
     width: 100%;
 }
 
-button.btn-start:hover {
+.btn-start:hover {
     background: rgb(87, 255, 87) !important;
     color: #111 !important;
     transition: all 158ms ease-out;
     width: calc(100% + 10%);
 }
 
-button.btn-quit:hover {
+.btn-quit:hover {
     background: rgb(253, 108, 108) !important;
     color: #111 !important;
     transition: all 158ms ease-out;
 }
 
-button.btn-topic {
+.btn-topic {
     background: rgb(0, 52, 148) !important;
     color: #fff !important;
     transition: all 158ms ease-out;
 }
 
-button.btn-topic:hover {
+.btn-topic:hover {
     background: rgb(62, 129, 255) !important;
     color: #111 !important;
     transition: all 158ms ease-out;
 }
 
-button.btn-keyboard {
+.btn-keyboard {
     background: rgb(0, 52, 148) !important;
     color: #fff !important;
     transition: all 158ms ease-out;
     width: 8%;
 }
 
-button.btn-keyboard:hover {
+.btn-keyboard:hover {
     background: rgb(62, 129, 255) !important;
     color: #111 !important;
     transition: all 158ms ease-out;
 }
 
-button.btn-wrong {
+.btn-wrong {
     background: rgb(109, 109, 109) !important;
     color: #111 !important;
     transition: all 158ms ease-out;
 }
 
-button.btn-correct {
+.btn-correct {
     background: rgb(0, 142, 207) !important;
     color: #111 !important;
     transition: all 158ms ease-out;
 }
 
-section.sup-title {
+.sup-title {
     display: block !important;
     width: auto !important;
 }
@@ -153,7 +157,7 @@ section.sup-title {
 
 /*--- Sections ---*/
 
-section.title {
+.title {
     padding: 10px 0px;
     text-transform: uppercase;
     font-weight: bold;
@@ -176,7 +180,7 @@ section.title {
     padding: 20px 20px;
 }
 
-div.controls {
+.controls {
     display: flex;
     flex-direction: column;
     flex-grow: 0;
@@ -184,7 +188,7 @@ div.controls {
     align-items: flex-start;
 }
 
-div.app-screen {
+.app-screen {
     margin-bottom: 15px;
 }
 
@@ -195,6 +199,17 @@ div.app-screen {
     align-items: center;
 }
 
+.sidebar-bot {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding-top: 2%;
+}
+
 .topics {
     display: flex;
     flex-direction: row;
@@ -203,7 +218,7 @@ div.app-screen {
     padding-top: 3%;
 }
 
-div.topic-display {
+.topic-display {
     display: block;
     text-align: center;
     justify-content: space-evenly;
@@ -226,7 +241,7 @@ div.topic-display {
     font-size: 17pt;
 }
 
-div.letters {
+.letters {
     display: flex;
     text-align: center;
     flex-direction: row;
@@ -237,27 +252,14 @@ div.letters {
     font-size: 17pt;
 }
 
-div.sidebar-bot {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    padding-top: 2%;
-    border: 3px solid #111;
-    border-radius: 2px;
-}
-
-section.topics {
+.topics {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-span.space {
+.space {
     content: "";
     display: block;
     position: relative;
@@ -266,7 +268,7 @@ span.space {
     left: -8px;
 }
 
-span.letter::after {
+.letter::after {
     content: "";
     display: block;
     position: relative;
@@ -276,15 +278,18 @@ span.letter::after {
     background: #111;
 }
 
-span.letter:not(:first-child) {
+.letter:not(:first-child) {
     margin-left: 20px;
 }
 
-canvas {
-    border: 2px #111 solid;
-    border-radius: 5px;
+.multiplayer {
+  display: flexbox;
 }
 
+.keyboard {
+  border: 3px solid #111;
+  border-radius: 2px;
+}
 
 /* css stuff i dont own */
 

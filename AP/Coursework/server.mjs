@@ -1,12 +1,20 @@
-import express from "express";
+import express from 'express';
+
+const port = 8080;
 
 const app = express();
 
 app.use(express.static('client'));
 
-app.use((req, res) => {
-    res.status(404).redirect('webpages/404.html');
-})
+app.get('/invite/:inviteId', (req, res) => {
+  console.log(req.params);
+  res.redirect('/index.html');
+  res.send(req.params);
+});
 
-console.log("started on http://127.0.0.1:8080");
-app.listen(8080);
+app.use((req, res) => {
+  res.status(404).redirect('/index.html');
+});
+
+console.log(`started on http://127.0.0.1:${port}`);
+app.listen(port);
