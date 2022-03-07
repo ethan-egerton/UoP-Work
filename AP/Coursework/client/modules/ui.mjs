@@ -1,5 +1,6 @@
 import * as game from './game.mjs';
 import * as tools from './tools.mjs';
+import * as multiplayer from './multiplayer.mjs';
 
 export let wordArray = [];
 let selectedMode = '';
@@ -15,6 +16,7 @@ export function displayGame() {
   document.querySelector('#btn-end').addEventListener('click', hideGameUI);
   document.querySelector('#food').addEventListener('click', selectTopic);
   document.querySelector('#music').addEventListener('click', selectTopic);
+  document.querySelector('#create-lobby').addEventListener('click', multiplayer.generateLobby);
 }
 
 // Display Toggles
