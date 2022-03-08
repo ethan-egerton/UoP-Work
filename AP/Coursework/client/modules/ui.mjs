@@ -80,7 +80,6 @@ export function keyboardEventInput() {
 // Topic Selecting
 export function selectTopic(event) {
   const topic = event.currentTarget.id;
-  document.querySelector('#topic-selected').textContent = topic;
   const wordsObj = tools.fetchWordData();
   wordArray = wordsObj[topic];
   game.startGame();
