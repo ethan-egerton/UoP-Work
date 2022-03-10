@@ -1,14 +1,12 @@
 import * as ui from './ui.mjs';
+import * as tools from './tools.mjs';
 
-// Declaration
 let splitWord = [];
-const canvas = document.querySelector('#canvas');
-const ctx = canvas.getContext('2d');
 let playerScore = 0;
 let correctLetters = 0;
 let wordLength = 0;
 let usedLetter = [];
-let userWord = [];
+const hangmanDisplay = document.querySelector('#hangman-display');
 
 // Letter Validation
 export function checkLetters(event = null, input = null) {
@@ -52,6 +50,7 @@ export function checkLetters(event = null, input = null) {
   if (correctLetters === wordLength) { ui.endDisplay(true); }
 }
 
+// Multiplayer letter handler
 export function inputLetters(event = null, input = null) {
   let letter;
   if (event != null) {
@@ -75,9 +74,8 @@ function randomWordGen() {
 export function startGame() {
   ui.startToggle();
   ui.generateKeyboard();
-  document.addEventListener('keydown', ui.keyboardPress);
   ui.keyboardEventCheck();
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  hangmanDisplay.src = '../assets/images/0.png';
   const word = randomWordGen();
   let spaceCounter = 0;
   // TODO: REMOVE THIS WHEN DONE
@@ -86,7 +84,7 @@ export function startGame() {
   correctLetters = 0;
   usedLetter = [];
 
-  canvasBuild();
+  canvasBuild(playerScore);
 
   // Set letters in word display
   // Loops through the letters, if finds space, adds space
@@ -94,16 +92,9 @@ export function startGame() {
   for (let i = 0; i < splitWord.length; i++) {
     if (splitWord[i] === ' ') {
       spaceCounter += 1;
-      const eleLetter = document.createElement('SPAN');
-      eleLetter.textContent = String.fromCharCode(32);
-      eleLetter.className = 'space';
-      document.querySelector('#letter-display').append(eleLetter);
+      document.querySelector('#letter-display').append(tools.elementCreator('span', '', 'space', String.fromCharCode(32)));
     } else {
-      const eleLetter = document.createElement('SPAN');
-      eleLetter.textContent = String.fromCharCode(160);
-      eleLetter.className = 'letter';
-      eleLetter.id = 'letter-' + (i - spaceCounter);
-      document.querySelector('#letter-display').append(eleLetter);
+      document.querySelector('#letter-display').append(tools.elementCreator('span', 'letter-' + (i - spaceCounter), 'letter', String.fromCharCode(160)));
     }
   }
 
@@ -115,62 +106,6 @@ export function startGame() {
 }
 
 function canvasBuild(score) {
-  switch (score) {
-    case 1:
-      // Base
-      ctx.fillStyle = 'black';
-      ctx.fillRect(10, 275, 100, 15);
-      break;
-    case 2:
-      // Pole
-      ctx.fillRect(25, 15, 10, 260);
-      break;
-    case 3:
-      // Hang beam
-      ctx.fillRect(25, 15, 132, 10);
-      break;
-    case 4:
-      // Rope
-      ctx.fillRect(152, 15, 5, 40);
-      break;
-    case 5:
-      // Head
-      ctx.beginPath();
-      ctx.arc(154, 85, 30, 0, 2 * Math.PI);
-      ctx.stroke();
-      break;
-    case 6:
-      // Body
-      ctx.fillRect(153, 115, 2, 90);
-      break;
-    case 7:
-      // R Arm
-      ctx.beginPath();
-      ctx.moveTo(153, 120);
-      ctx.lineTo(170, 160);
-      ctx.stroke();
-      break;
-    case 8:
-      // L Arm
-      ctx.beginPath();
-      ctx.moveTo(155, 120);
-      ctx.lineTo(136, 160);
-      ctx.stroke();
-      break;
-    case 9:
-      // R Leg
-      ctx.beginPath();
-      ctx.moveTo(153, 203);
-      ctx.lineTo(170, 243);
-      ctx.stroke();
-      break;
-    case 10:
-      // L Leg
-      ctx.beginPath();
-      ctx.moveTo(155, 203);
-      ctx.lineTo(136, 243);
-      ctx.stroke();
-      ui.endDisplay(false);
-      break;
-  }
+  hangmanDisplay.src = `../assets/images/${score}.png`;
+  if (score === 11) { ui.endDisplay(false); }
 }

@@ -4,8 +4,9 @@ import * as multiplayer from './multiplayer.mjs';
 
 export let wordArray = [];
 let selectedMode = '';
+let keyboardActive = false;
 
-// called when page loads
+// Called when page loads
 export function displayGame() {
   document.querySelector('.lds-roller').classList.add('display-none');
   document.querySelector('.app').classList.remove('display-none');
@@ -14,12 +15,15 @@ export function displayGame() {
   document.querySelector('#btn-settings').addEventListener('click', selectMode);
   document.querySelector('#btn-history').addEventListener('click', selectMode);
   document.querySelector('#btn-end').addEventListener('click', hideGameUI);
-  document.querySelector('#food').addEventListener('click', selectTopic);
-  document.querySelector('#music').addEventListener('click', selectTopic);
   document.querySelector('#create-lobby').addEventListener('click', multiplayer.generateLobby);
+  document.querySelector('#confirm-id').addEventListener('click', enterLobby);
+
+  clearControls();
+  loadTopicButtons();
+  toggleDisplay(false, ['#sidebar-bot', '#topic-display', '#topics']);
+  singleplayerSelected();
 }
 
-// Display Toggles
 export function toggleDisplay(hide, elements) {
   for (let i = 0; i < elements.length; i++) {
     const element = elements[i];
@@ -31,6 +35,7 @@ export function toggleDisplay(hide, elements) {
   }
 }
 
+// Display handlers
 export function startToggle() {
   clearWordDisplay();
   toggleDisplay(true, ['#topic-display', '#btn-single', '#btn-multi', '#btn-settings', '#btn-history', '#topics']);
@@ -39,20 +44,28 @@ export function startToggle() {
 
 function clearControls() {
   toggleDisplay(true, ['#topic-display', '#topics', '#keyboard']);
-
+  tools.removeElements(['.btn-topic']);
+  removeKeyboard();
   if (document.querySelector('.btn-selected') !== null) {
     document.querySelector('.btn-selected').classList.remove('btn-selected');
   }
-  removeKeyboard();
 }
 
 function hideGameUI(endState = false) {
+  document.querySelector('#hangman-display').src = '../assets/images/11.png';
   removeKeyboard();
   toggleDisplay(false, ['#topic-display', '#btn-single', '#btn-multi', '#btn-settings', '#btn-history', '#topics']);
   toggleDisplay(true, ['#letter-display', '#btn-end', '#keyboard']);
   if (endState === true) {
     document.querySelector('#end-text').remove();
     document.querySelector('#return-button').remove();
+  }
+}
+
+export function removeKeyboard() {
+  const keyboard = document.querySelector('#keyboard');
+  while (keyboard.firstChild) {
+    keyboard.removeChild(keyboard.firstChild);
   }
 }
 
@@ -63,21 +76,18 @@ function clearWordDisplay() {
   }
 }
 
-export function keyboardEventCheck() {
-  Array.from(document.querySelectorAll('.btn-keyboard')).forEach(element => {
-    element.addEventListener('click', game.checkLetters);
-  });
-  document.addEventListener('keydown', function (event) { keyboardPress(event, 'check'); });
+// Dynamically loads available topics
+function loadTopicButtons() {
+  const topics = tools.fetchWordData();
+  const topicNames = Object.getOwnPropertyNames(topics);
+  for (let i = 0; i < topicNames.length; i++) {
+    const topic = topicNames[i];
+    document.querySelector('#topics').appendChild(tools.elementCreator('button', topic, 'btn btn-topic', topic.charAt(0).toUpperCase() + topic.slice(1)));
+    document.querySelector(`#${topic}`).addEventListener('click', selectTopic);
+  }
 }
 
-export function keyboardEventInput() {
-  Array.from(document.querySelectorAll('.btn-keyboard')).forEach(element => {
-    element.addEventListener('click', game.inputLetters);
-  });
-  document.addEventListener('keydown', function (event) { keyboardPress(event, 'compInput'); });
-}
-
-// Topic Selecting
+// Topic selection handler
 export function selectTopic(event) {
   const topic = event.currentTarget.id;
   const wordsObj = tools.fetchWordData();
@@ -85,7 +95,23 @@ export function selectTopic(event) {
   game.startGame();
 }
 
-// Dynamic selection
+// Event for checking if the letter is part of the word
+export function keyboardEventCheck() {
+  Array.from(document.querySelectorAll('.btn-keyboard')).forEach(element => {
+    element.addEventListener('click', game.checkLetters);
+  });
+  document.addEventListener('keydown', function (event) { keyboardPress(event, 'check'); });
+}
+
+// Event for handling basic keyboard input for multiplayer
+export function keyboardEventInput() {
+  Array.from(document.querySelectorAll('.btn-keyboard')).forEach(element => {
+    element.addEventListener('click', game.inputLetters);
+  });
+  document.addEventListener('keydown', function (event) { keyboardPress(event, 'compInput'); });
+}
+
+// Dynamic menu selection
 export function selectMode(event) {
   if (selectedMode !== '') {
     document.querySelector('.' + selectedMode + '-selected').classList.remove(selectedMode + '-selected');
@@ -94,7 +120,8 @@ export function selectMode(event) {
   switch (selectedMode) {
     case 'btn-single':
       clearControls();
-      toggleDisplay(false, ['#topic-display', '#topics']);
+      loadTopicButtons();
+      toggleDisplay(false, ['#sidebar-bot', '#topic-display', '#topics']);
       singleplayerSelected();
       break;
     case 'btn-multi':
@@ -125,33 +152,29 @@ function multiSelected() {
 }
 
 export function generateKeyboard(backspace = false) {
+  keyboardActive = true;
+  document.addEventListener('keydown', keyboardPress);
   const qwerty = tools.qwertyString();
   const qwertyArray = qwerty.split('');
   const keyboard = document.querySelector('#keyboard');
   // button generation, when it hits a / it creates line break
   for (let i = 0; i < qwertyArray.length; i++) {
     if (qwertyArray[i] === '/') {
-      const button = document.createElement('div');
-      button.classList = ('button-break');
-      keyboard.appendChild(button);
+      keyboard.appendChild(tools.elementCreator('div', '', 'button-break'));
     } else {
-      const button = document.createElement('button');
-      button.appendChild(document.createTextNode(qwertyArray[i]));
-      button.id = 'keyboard-' + qwertyArray[i];
-      button.classList = ('btn btn-keyboard');
-      keyboard.appendChild(button);
+      keyboard.appendChild(tools.elementCreator('button', 'keyboard-' + qwertyArray[i], 'btn btn-keyboard', qwertyArray[i]));
     }
   }
   if (backspace === true) {
-    const button = document.createElement('button');
-    button.appendChild(document.createTextNode('←'));
-    button.id = 'keyboard-backspace';
-    button.classList = ('btn btn-keyboard');
-    keyboard.appendChild(button);
+    keyboard.appendChild(tools.elementCreator('button', 'keyboard-backspace', 'btn btn-keyboard', '←'));
   }
 }
 
+// Event for keydown presses
 function keyboardPress(e, mode) {
+  if (keyboardActive === false) {
+    return;
+  }
   let keyString = e.code;
   if (keyString.startsWith('Key')) {
     keyString = keyString.slice(3).toLowerCase();
@@ -164,17 +187,12 @@ function keyboardPress(e, mode) {
   }
 }
 
-export function removeKeyboard() {
-  const keyboard = document.querySelector('#keyboard');
-  while (keyboard.firstChild) {
-    keyboard.removeChild(keyboard.firstChild);
-  }
-}
-
 export function endDisplay(winStatus) {
-  document.removeEventListener('keydown', keyboardPress);
+  keyboardActive = false;
   document.querySelector('#btn-end').classList.add('display-none');
-
+  document.querySelectorAll('.btn-keyboard').forEach(element => {
+    element.removeEventListener('click', game.checkLetters);
+  });
 
   let displayText;
   if (winStatus === true) {
@@ -184,17 +202,16 @@ export function endDisplay(winStatus) {
   }
 
   const sidebar = document.querySelector('.controls');
-  const p = document.createElement('P');
-  p.appendChild(document.createTextNode(displayText));
-  p.id = 'end-text';
-  p.classList = ('end-text');
-
-  const button = document.createElement('button');
-  button.appendChild(document.createTextNode('Return to menu'));
-  button.id = 'return-button';
-  button.classList = ('btn btn-quit');
+  const p = tools.elementCreator('p', 'end-text', 'end-text', displayText);
+  const button = tools.elementCreator('button', 'return-button', 'btn btn-return', 'Return to menu');
   button.addEventListener('click', function () { hideGameUI(true); });
 
   sidebar.prepend(button);
   sidebar.prepend(p);
+}
+
+// Multiplayer event handlers
+function enterLobby() {
+  const input = document.querySelector('#lobby-id-input').textContent;
+  multiplayer.joinLobby(input);
 }

@@ -1,7 +1,7 @@
 import express from 'express';
 
 const port = 8080;
-let activeLobbies = {
+const activeLobbies = {
   lobbies: [],
 };
 

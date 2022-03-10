@@ -15,9 +15,9 @@ export async function generateLobby() {
 export async function joinLobby(id) {
   const response = await fetch(`/joinLobby/${id}`);
   if (response.status === 200) {
-    console.log('lobby joined');
     currentLobby = id;
+    return true;
   } else {
-    console.log('no lobby found');
+    return false;
   }
 }
