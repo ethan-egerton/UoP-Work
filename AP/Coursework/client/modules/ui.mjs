@@ -215,3 +215,12 @@ function enterLobby() {
   const input = document.querySelector('#lobby-id-input').textContent;
   multiplayer.joinLobby(input);
 }
+
+export function loadMultiplayerMenu(isHost) {
+  toggleDisplay(true, ['#topic-display', '#btn-single', '#btn-multi', '#btn-settings', '#btn-history', '#topics']);
+  if (isHost === true) {
+    // show host selection
+  } else {
+    // show player waiting screen
+  }
+}
