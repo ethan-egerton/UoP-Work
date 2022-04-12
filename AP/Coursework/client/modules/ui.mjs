@@ -217,9 +217,10 @@ function enterLobby() {
 }
 
 export function loadMultiplayerMenu(isHost) {
-  toggleDisplay(true, ['#topic-display', '#btn-single', '#btn-multi', '#btn-settings', '#btn-history', '#topics']);
+  toggleDisplay(true, ['#topic-display', '#btn-single', '#btn-multi', '#btn-settings', '#btn-history', '#topics', '.app-screen', '#multiplayer']);
   if (isHost === true) {
-    // show host selection
+    document.querySelector('#lobby-code').textContent(multiplayer.currentLobby);
+    toggleDisplay(false, ['#lobby-code-display']);
   } else {
     // show player waiting screen
   }

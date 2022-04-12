@@ -35,6 +35,10 @@
                 <button class="btn btn-control" id="btn-history">History</button>
                 <button class="btn btn-quit display-none" id="btn-end">End Game</button>
             </div>
+            <div class="multiplayer-menu-controls display-none">
+                <button class="btn btn-control" id="btn-multiplayer-hangman">Hangman</button>
+                <button class="btn btn-control" id="btn-multiplayer-blitz">Blitz</button>
+            </div>
             <div class="app-screen">
                 <img id="hangman-display" class="hangman-display" src="assets/images/11.png" alt="Hangman Display" height="300" width="300">
             </div>
@@ -45,14 +49,19 @@
             </div>
             <div class="letters display-none" id="letter-display">
             </div>
+            <div class="topic-display display-none" id="lobby-code-display">
+              <h2 class="code-display">Waiting for a player to join</h2>
+              <h3 class="code-display">Join the code: <p class="selectable-text" id="lobby-code"></p> </h3>
+              <button class="btn" id="confirm-id">Add link to clipboard</button>
+            </div>
         </section>
         <section id="sidebar-bot" class="sidebar-bot display-none">
             <div id="topics" class="topics display-none"></div>
             <div id="keyboard" class="keyboard display-none"></div>
             <div id="multiplayer" class="display-none">
-                <button class="" id="create-lobby">Create Lobby</button>
-                <input class="" id="lobby-id-input">
-                <button class="" id="confirm-id">Enter Lobby</button>
+                <button class="btn" id="create-lobby">Create Lobby</button>
+                <input class="btn" id="lobby-id-input">
+                <button class="btn" id="confirm-id">Enter Lobby</button>
             </div>
         </section>
     </section>

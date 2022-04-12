@@ -4,15 +4,21 @@ import * as ui from './ui.mjs';
 export let currentLobby;
 let isHost;
 
-export async function generateLobby() {
+async function getLobbies() {
   const response = await fetch('/getActiveLobbies');
   const responseJson = await response.json();
-  const lobbies = responseJson.lobbies;
+  return responseJson.lobbies;
+}
+
+export async function generateLobby() {
+  const lobbies = getLobbies();
   do {
     currentLobby = tools.charGen(7).toString;
   } while (lobbies.includes(currentLobby));
-  await fetch(`/createLobby/${currentLobby}`);
-  ui.loadMultiplayerMenu();
+  const lobbyCreated = await fetch(`/createLobby/${currentLobby}`);
+  if (lobbyCreated.status === 400) {
+    ui.loadMultiplayerMenu(true);
+  }
 }
 
 export async function joinLobby(id) {
@@ -24,4 +30,18 @@ export async function joinLobby(id) {
   } else {
     return false;
   }
+}
+
+async function getGameData(lobby) {
+  try {
+    const response = await fetch(`/getGameData/${lobby}`);
+    const responseJson = response.json();
+    console.log(responseJson);
+  } catch (error) {
+    return false;
+  }
+}
+
+function sendGameData(lobby, player, data) {
+  return true;
 }

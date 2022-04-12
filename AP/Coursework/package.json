@@ -7,7 +7,7 @@
     "start": "node server.mjs"
   },
   "type": "module",
-  "author": "Ethan Egerton",
+  "author": "UP2067147",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3"

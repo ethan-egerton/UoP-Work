@@ -296,6 +296,19 @@ h3 {
 }
 
 /*--- Text ---*/
+
+.selectable-text {
+  user-select: text;
+}
+
+h2.code-display {
+  padding-bottom: 10px;
+}
+
+h3.code-display {
+  padding-bottom: 20px;
+}
+
 .space {
   content: "";
   display: block;
@@ -331,6 +344,12 @@ h3 {
 @media only screen and (max-width: 600px) {
   .app {
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .app {
+    width: 600px;
   }
 }
 
