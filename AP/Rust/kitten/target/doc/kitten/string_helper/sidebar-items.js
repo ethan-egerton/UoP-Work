@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["as_ordinal","Returns the number with the correct ordinal based on the number inputted"],["first_word","Returns the first word of a string"]]});
