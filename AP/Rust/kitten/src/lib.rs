@@ -10,6 +10,7 @@ pub mod string_helper {
   /// Given the value of 11, as_ordinal returns "st"
   /// 
   /// ```
+  /// use kitten::string_helper::as_ordinal;
   /// let arg = 11;
   /// let result = as_ordinal(arg);
   /// 
@@ -19,6 +20,7 @@ pub mod string_helper {
   /// Given the value of 103, as_ordinal returns "rd"
   /// 
   /// ```
+  /// use kitten::string_helper::as_ordinal;
   /// let arg = 103;
   /// let result = as_ordinal(arg);
   /// 
@@ -47,6 +49,7 @@ pub mod string_helper {
   /// Given a single word with no spaces, first_word will return that word
   ///
   /// ```
+  /// use kitten::string_helper::first_word;
   /// let arg = String::from("Hello");
   /// let result = first_word(arg);
   /// 
@@ -55,6 +58,7 @@ pub mod string_helper {
   /// 
   /// Given a string with multiple words, first_word will return the first word
   /// ```
+  /// use kitten::string_helper::first_word;
   /// let arg = String::from("Red Green Blue");
   /// let result = first_word(arg);
   /// 
@@ -70,4 +74,39 @@ pub mod string_helper {
     }
     return word;
   }
+}
+
+#[cfg(test)]
+mod string_helper_tests {
+  use super::string_helper;
+
+  #[test]
+  fn as_ordinal_th() {
+    let arg = 112;
+    assert_eq!(String::from("112th"), string_helper::as_ordinal(arg));
+  }
+
+  #[test]
+  fn as_ordinal_not_th() {
+    let arg = 101;
+    assert_eq!(String::from("101st"), string_helper::as_ordinal(arg));
+  }
+}
+
+mod file_helper {
+  pub fn file_content(filename: &str) -> Result<String, String> {
+    todo!();
+  }
+}
+
+
+#[cfg(test)]
+mod file_helper_test {
+
+  #[test]
+  fn file_content_file_exists {
+    todo!();
+  }
+
+  
 }

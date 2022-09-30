@@ -1,5 +1,6 @@
 use std::io;
 use kitten::string_helper::as_ordinal;
+use kitten::string_helper::first_word;
 
 fn main() {
   const KITTEN: &str = "🐱";
@@ -32,14 +33,20 @@ fn main() {
   }
 
   for number_of_file in 1..(number_of_files + 1) {
-    
-
     println!(
       "[{}/{}] Please enter the name/path to the {} file:",
       number_of_file, number_of_files, as_ordinal(number_of_file)
     );
 
-    // need to ask for input here
+    match io::stdin().read_line(&mut input) {     
+      Ok(_) => {
+        input = first_word(input);
+        println!("Opening file: {}", input); // for debugging
+      }
+      Err(error) => {
+        panic!("Error while reading your input: {}", error);
+      }
+    }
   }
 
   println!("Bye from {}!", KITTEN);

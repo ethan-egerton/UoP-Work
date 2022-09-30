@@ -77,8 +77,21 @@
 <span id="72">72</span>
 <span id="73">73</span>
 <span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
 </pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">string_helper</span> {
-
   <span class="doccomment">/// Returns the number with the correct ordinal based on the number inputted</span>
   <span class="doccomment">/// </span>
   <span class="doccomment">/// # Arguments</span>
@@ -90,6 +103,7 @@
   <span class="doccomment">/// Given the value of 11, as_ordinal returns &quot;st&quot;</span>
   <span class="doccomment">/// </span>
   <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// use kitten::string_helper::as_ordinal;</span>
   <span class="doccomment">/// let arg = 11;</span>
   <span class="doccomment">/// let result = as_ordinal(arg);</span>
   <span class="doccomment">/// </span>
@@ -99,6 +113,7 @@
   <span class="doccomment">/// Given the value of 103, as_ordinal returns &quot;rd&quot;</span>
   <span class="doccomment">/// </span>
   <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// use kitten::string_helper::as_ordinal;</span>
   <span class="doccomment">/// let arg = 103;</span>
   <span class="doccomment">/// let result = as_ordinal(arg);</span>
   <span class="doccomment">/// </span>
@@ -127,6 +142,7 @@
   <span class="doccomment">/// Given a single word with no spaces, first_word will return that word</span>
   <span class="doccomment">///</span>
   <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// use kitten::string_helper::first_word;</span>
   <span class="doccomment">/// let arg = String::from(&quot;Hello&quot;);</span>
   <span class="doccomment">/// let result = first_word(arg);</span>
   <span class="doccomment">/// </span>
@@ -135,6 +151,7 @@
   <span class="doccomment">/// </span>
   <span class="doccomment">/// Given a string with multiple words, first_word will return the first word</span>
   <span class="doccomment">/// ```</span>
+  <span class="doccomment">/// use kitten::string_helper::first_word;</span>
   <span class="doccomment">/// let arg = String::from(&quot;Red Green Blue&quot;);</span>
   <span class="doccomment">/// let result = first_word(arg);</span>
   <span class="doccomment">/// </span>
@@ -149,6 +166,17 @@
       <span class="ident">word</span>.<span class="ident">push</span>(<span class="ident">elem</span>);
     }
     <span class="kw">return</span> <span class="ident">word</span>;
+  }
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">string_helper_tests</span> {
+  <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::string_helper</span>;
+
+  <span class="attribute">#[<span class="ident">test</span>]</span>
+  <span class="kw">fn</span> <span class="ident">as_ordinal_th</span>() {
+    <span class="kw">let</span> <span class="ident">arg</span> <span class="op">=</span> <span class="number">112</span>;
+    <span class="macro">assert_eq!</span>(<span class="ident">String::from</span>(<span class="string">&quot;112th&quot;</span>), <span class="ident">string_helper::as_ordinal</span>(<span class="ident">arg</span>));
   }
 }</code></pre></div>
 </section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="kitten" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
