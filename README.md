@@ -1,2 +1,2 @@
 # UoP-Work
-Repo for having cross-platform UoP work
+Repo for all archived work done during university
