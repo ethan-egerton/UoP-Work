@@ -1,3 +1,0 @@
-CREATE TABLE product (prod_id SERIAL PRIMARY KEY, prod_name varchar(30), prod_desc text, prod_price decimal(6,2));
-CREATE TABLE category (cat_id SERIAL PRIMARY KEY, cat_name varchar(50), cat_desc text);
-CREATE TABLE manifest (man_id SERIAL PRIMARY KEY, FOREIGN KEY(ord_num) REFERENCES custOrder(ord_num), FOREIGN KEY(prod_id) REFERENCES product(prod_id));
